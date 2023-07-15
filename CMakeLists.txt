@@ -11,25 +11,29 @@ message("-- CMAKE_SYSTEM_NAME:      ${CMAKE_SYSTEM_NAME}")
 message("-- CMAKE_SYSTEM_PROCESSOR: ${CMAKE_SYSTEM_PROCESSOR}")
 message("-- CMAKE_SYSTEM:           ${CMAKE_SYSTEM}")
 
-set(CMAKE_DEBUG_POSTFIX d)
+set(CMAKE_DEBUG_POSTFIX "_d")
 
 # Todo: make a cmake function that checks for subsystems.
 if(${CMAKE_SYSTEM} MATCHES "CYGWIN")
-    message("Windows subsystem")    
+    message("Is Cygwin: Windows subsystem")    
+    set(CMAKE_SYSTEM_NAME Windows)
+endif()
+
+if(${CMAKE_SYSTEM} MATCHES "MSYS")
+    message("Is MSYS: Windows subsystem")    
     set(CMAKE_SYSTEM_NAME Windows)
 endif()
 
 if(${CMAKE_SYSTEM} MATCHES "MINGW")
-    message("Windows subsystem")    
+    message("Is MingW: Windows subsystem")    
     set(CMAKE_SYSTEM_NAME Windows)
 endif()
 
-if(${CMAKE_SYSTEM_NAME} MATCHES "Windows" )
-    set(CMAKE_SHARED_LIBRARY_PREFIX "")
-    set(CMAKE_SHARED_LIBRARY_SUFFIX ".dll")
-    set(CMAKE_FIND_LIBRARY_SUFFIXES ".dll")
-    set(CMAKE_EXTRA_SHARED_LIBRARY_SUFFIXES ".dll")
-endif()
+
+set(CMAKE_SHARED_LIBRARY_PREFIX "")
+set(CMAKE_SHARED_LIBRARY_SUFFIX ".dll")
+set(CMAKE_FIND_LIBRARY_SUFFIXES ".dll")
+set(CMAKE_EXTRA_SHARED_LIBRARY_SUFFIXES ".dll")
 
 add_library(hello SHARED hello.c)
 

@@ -3,8 +3,8 @@
 
 int main(int argc, char** argv){
 
-    hello();
-    printf("\nHello world\n");
+    int life = hello();
+    printf("\nHello world: %d\n", life);
     
     return 0;
 }
