@@ -1,6 +1,4 @@
-# ignore build folder
-build/*
-!build/.gitignore 
+# ignore build folders
+build
 build-debug
-!build-debug/.gitignore
 

@@ -1,0 +1,680 @@
+ASN_MODULE_SRCS=	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DataInterChange.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TransferBatch.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Notification.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallEventDetailList.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallEventDetail.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BatchControlInfo.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/AccountingInfo.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NetworkInfo.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/VasInfo.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MessageDescriptionInfo.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MobileOriginatedCall.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MobileTerminatedCall.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SupplServiceEvent.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ServiceCentreUsage.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ValueAddedService.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsCall.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/AuditControlInfo.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/AccessPointName.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/AddressStringDigits.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/AiurRequested.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BasicHSCSDParameters.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BasicService.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BasicServiceCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BasicServiceCodeList.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BasicServiceUsedList.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BasicServiceUsed.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BearerServiceCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CalledNumAnalysis.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CalledNumAnalysisCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CalledNumAnalysisList.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CalledPlace.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallOriginator.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallEventDetailsCount.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallEventStartTimeStamp.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallReference.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CalledRegion.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallType.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallTypeSubtype.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelCallReference.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelCallReferenceNumber.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelDestination.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelInitiatedCFIndicator.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelModification.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelModificationList.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelServiceKey.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelServiceLevel.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelServiceUsed.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CauseForTerm.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CellId.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChannelCoding.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChannelCodingsAcceptable.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Charge.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargeDetail.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargeDetailList.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargeableSubscriber.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargeableUnits.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargedItem.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargedPartyStatus.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargedUnits.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargeInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargeInformationList.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargeType.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargingId.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargingPoint.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargingTimeStamp.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ClirIndicator.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CompletionTimeStamp.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CountryCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CountryCodeTable.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CseInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CurrencyConversion.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DataVolume.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DataVolumeIncoming.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DataVolumeOutgoing.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DataVolumeReference.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DateTime.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DateTimeLong.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DayCategory.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DayCategorySubtype.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DefaultCallHandlingIndicator.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DepositTimeStamp.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Destination.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DestinationNetwork.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DiscountApplied.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DiscountCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DiscountDefinition.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DiscountInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DiscountInformationList.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Discounting.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DiscountRate.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DiscountValue.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DistanceChargeBandCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DualServiceCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DualBearerServiceCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DualTeleServiceCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/EarliestCallTimeStamp.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/EquipmentInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Esn.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ExchangeRate.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ExchangeRateCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ExchangeRateDefinition.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/FileAvailableTimeStamp.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/FileCreationTimeStamp.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/FileSequenceNumber.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/FileTypeIndicator.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Fnur.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/FraudMonitorIndicator.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GeographicalLocation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsBasicCallInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsChargeableSubscriber.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsDestination.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsLocationInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsNetworkLocation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsServiceUsage.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsServiceUsageList.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsServiceUsed.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GsnAddress.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/HomeBid.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/HomeLocationInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/HSCSDInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/HSCSDParameterModification.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Iac.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/IacTable.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Imei.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ImeiOrEsn.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Imsi.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/InitiatingParty.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/IpAddress.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/IPTextV4Address.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/IPTextV6Address.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/LatestCallTimeStamp.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Latitude.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/LocalCurrency.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/LocalTimeStamp.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/LocationArea.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/LocationDescription.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/LocationInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Longitude.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MessageDescriptionCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MessageDescription.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MessageDescriptionDefinition.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MessageStatus.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MessageType.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Min.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MoBasicCallInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MobileStationClassMark.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ModificationIndicator.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ModificationTimestamp.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MscId.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Msisdn.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MtBasicCallInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MultiRateIndicator.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NetworkId.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NetworkInitPDPContext.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NetworkLocation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NetworkType.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NonChargedParty.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NumberOfDecimalPlaces.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NumberingPlan.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NumberOfChannels.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NumberOfChannelsUsed.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/OperatorSpecInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/OriginatingNetwork.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/PacketDataProtocolAddress.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/PartialTypeIndicator.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/PdpAddress.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/PdpType.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/PlmnId.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/PriorityCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSDelay.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSMeanThroughput.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSPeakThroughput.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSPrecedence.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSReliability.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSRequested.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSUsed.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RadioChannelRequested.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RadioChannelUsed.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RapFileSequenceNumber.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Recipient.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RecEntityDefinition.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RecEntityCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RecEntityCodeList.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RecEntityType.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RecEntityId.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RecEntityTable.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ReleaseVersionNumber.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RemotePdpAddressList.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ScuBasicInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ScuChargeType.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ScuTimeStamps.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ScuVasChargeableSubscriber.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Sender.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ServiceCentreIdentity.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ServingBid.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SimChargeableSubscriber.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SimToolkitIndicator.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SpecificationVersionNumber.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SpeechVersionRequested.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SpeechVersionUsed.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SpeechVersion.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SsParameters.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SupplServiceUsed.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SupplServiceUsedList.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SupplServiceActionCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SupplServiceCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TapCurrency.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Taxation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TaxCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TapDecimalPlaces.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TaxInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TaxInformationList.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TaxRate.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TaxRateDefinition.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TaxType.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TeleServiceCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ThirdPartyInformation.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TimeBand.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TimeBandSubtype.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TotalChargeValue.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TotalCallEventDuration.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TotalChargeValueList.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TotalDiscountValue.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TotalTaxValue.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TransferCutOffTimeStamp.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TransparencyIndicator.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TypeOfControllingNode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TypeOfNumber.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/UtcTimeOffset.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/UtcTimeOffsetCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/UtcTimeOffsetDefinition.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/UtcTimeOffsetInfo.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ValueAddedServiceUsedList.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ValueAddedServiceUsed.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/VasCode.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/VasDefinition.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/VasDescription.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/VasShortDescription.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/AbsoluteAmount.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Bid.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Code.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/AsciiString.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Currency.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Description.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/HexString.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NumberString.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/PercentageRate.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BCDString.c	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/EXTERNAL.c
+
+ASN_MODULE_HDRS=	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DataInterChange.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TransferBatch.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Notification.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallEventDetailList.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallEventDetail.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BatchControlInfo.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/AccountingInfo.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NetworkInfo.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/VasInfo.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MessageDescriptionInfo.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MobileOriginatedCall.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MobileTerminatedCall.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SupplServiceEvent.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ServiceCentreUsage.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ValueAddedService.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsCall.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/AuditControlInfo.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/AccessPointName.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/AddressStringDigits.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/AiurRequested.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BasicHSCSDParameters.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BasicService.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BasicServiceCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BasicServiceCodeList.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BasicServiceUsedList.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BasicServiceUsed.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BearerServiceCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CalledNumAnalysis.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CalledNumAnalysisCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CalledNumAnalysisList.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CalledPlace.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallOriginator.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallEventDetailsCount.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallEventStartTimeStamp.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallReference.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CalledRegion.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallType.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CallTypeSubtype.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelCallReference.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelCallReferenceNumber.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelDestination.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelInitiatedCFIndicator.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelModification.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelModificationList.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelServiceKey.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelServiceLevel.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CamelServiceUsed.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CauseForTerm.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CellId.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChannelCoding.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChannelCodingsAcceptable.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Charge.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargeDetail.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargeDetailList.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargeableSubscriber.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargeableUnits.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargedItem.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargedPartyStatus.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargedUnits.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargeInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargeInformationList.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargeType.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargingId.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargingPoint.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ChargingTimeStamp.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ClirIndicator.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CompletionTimeStamp.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CountryCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CountryCodeTable.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CseInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/CurrencyConversion.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DataVolume.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DataVolumeIncoming.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DataVolumeOutgoing.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DataVolumeReference.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DateTime.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DateTimeLong.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DayCategory.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DayCategorySubtype.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DefaultCallHandlingIndicator.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DepositTimeStamp.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Destination.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DestinationNetwork.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DiscountApplied.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DiscountCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DiscountDefinition.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DiscountInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DiscountInformationList.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Discounting.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DiscountRate.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DiscountValue.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DistanceChargeBandCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DualServiceCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DualBearerServiceCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/DualTeleServiceCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/EarliestCallTimeStamp.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/EquipmentInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Esn.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ExchangeRate.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ExchangeRateCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ExchangeRateDefinition.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/FileAvailableTimeStamp.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/FileCreationTimeStamp.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/FileSequenceNumber.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/FileTypeIndicator.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Fnur.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/FraudMonitorIndicator.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GeographicalLocation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsBasicCallInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsChargeableSubscriber.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsDestination.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsLocationInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsNetworkLocation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsServiceUsage.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsServiceUsageList.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GprsServiceUsed.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/GsnAddress.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/HomeBid.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/HomeLocationInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/HSCSDInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/HSCSDParameterModification.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Iac.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/IacTable.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Imei.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ImeiOrEsn.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Imsi.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/InitiatingParty.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/IpAddress.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/IPTextV4Address.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/IPTextV6Address.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/LatestCallTimeStamp.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Latitude.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/LocalCurrency.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/LocalTimeStamp.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/LocationArea.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/LocationDescription.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/LocationInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Longitude.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MessageDescriptionCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MessageDescription.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MessageDescriptionDefinition.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MessageStatus.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MessageType.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Min.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MoBasicCallInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MobileStationClassMark.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ModificationIndicator.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ModificationTimestamp.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MscId.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Msisdn.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MtBasicCallInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/MultiRateIndicator.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NetworkId.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NetworkInitPDPContext.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NetworkLocation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NetworkType.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NonChargedParty.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NumberOfDecimalPlaces.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NumberingPlan.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NumberOfChannels.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NumberOfChannelsUsed.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/OperatorSpecInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/OriginatingNetwork.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/PacketDataProtocolAddress.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/PartialTypeIndicator.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/PdpAddress.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/PdpType.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/PlmnId.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/PriorityCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSDelay.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSMeanThroughput.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSPeakThroughput.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSPrecedence.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSReliability.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSRequested.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/QoSUsed.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RadioChannelRequested.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RadioChannelUsed.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RapFileSequenceNumber.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Recipient.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RecEntityDefinition.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RecEntityCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RecEntityCodeList.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RecEntityType.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RecEntityId.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RecEntityTable.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ReleaseVersionNumber.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/RemotePdpAddressList.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ScuBasicInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ScuChargeType.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ScuTimeStamps.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ScuVasChargeableSubscriber.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Sender.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ServiceCentreIdentity.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ServingBid.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SimChargeableSubscriber.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SimToolkitIndicator.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SpecificationVersionNumber.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SpeechVersionRequested.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SpeechVersionUsed.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SpeechVersion.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SsParameters.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SupplServiceUsed.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SupplServiceUsedList.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SupplServiceActionCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/SupplServiceCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TapCurrency.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Taxation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TaxCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TapDecimalPlaces.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TaxInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TaxInformationList.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TaxRate.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TaxRateDefinition.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TaxType.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TeleServiceCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ThirdPartyInformation.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TimeBand.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TimeBandSubtype.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TotalChargeValue.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TotalCallEventDuration.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TotalChargeValueList.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TotalDiscountValue.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TotalTaxValue.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TransferCutOffTimeStamp.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TransparencyIndicator.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TypeOfControllingNode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/TypeOfNumber.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/UtcTimeOffset.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/UtcTimeOffsetCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/UtcTimeOffsetDefinition.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/UtcTimeOffsetInfo.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ValueAddedServiceUsedList.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/ValueAddedServiceUsed.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/VasCode.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/VasDefinition.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/VasDescription.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/VasShortDescription.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/AbsoluteAmount.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Bid.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Code.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/AsciiString.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Currency.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/Description.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/HexString.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/NumberString.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/PercentageRate.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/BCDString.h	\
+	E:/repos/tap3reader/src/pdus/tap/3_01/EXTERNAL.h
+
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/ANY.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/ANY.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/OCTET_STRING.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/OPEN_TYPE.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OPEN_TYPE.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_CHOICE.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/GraphicString.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/GraphicString.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/INTEGER.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/INTEGER.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/NativeInteger.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/NativeInteger.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/OBJECT_IDENTIFIER.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OBJECT_IDENTIFIER.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_codecs_prim.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/ObjectDescriptor.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/ObjectDescriptor.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_SEQUENCE_OF.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_SEQUENCE_OF.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_SET_OF.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_SET_OF.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_CHOICE.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE_OF.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE_OF.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SET_OF.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SET_OF.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_application.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_application.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_ioc.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_system.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_codecs.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_internal.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_internal.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_bit_data.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_bit_data.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OCTET_STRING.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/BIT_STRING.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/BIT_STRING.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_codecs_prim.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/ber_tlv_length.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/ber_tlv_length.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/ber_tlv_tag.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/ber_tlv_tag.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_TYPE.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_TYPE.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/constraints.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constraints.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/ber_decoder.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/der_encoder.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/ber_decoder.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/der_encoder.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/ANY_ber.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/INTEGER_ber.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/NativeInteger_ber.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OCTET_STRING_ber.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OPEN_TYPE_ber.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_codecs_prim_ber.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_CHOICE_ber.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE_OF_ber.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE_ber.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SET_OF_ber.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/xer_support.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/xer_decoder.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/xer_encoder.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/xer_support.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/xer_decoder.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/xer_encoder.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/ANY_xer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/BIT_STRING_xer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/INTEGER_xer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/NativeInteger_xer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OBJECT_IDENTIFIER_xer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OCTET_STRING_xer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OPEN_TYPE_xer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_codecs_prim_xer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_CHOICE_xer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE_OF_xer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE_xer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SET_OF_xer.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/oer_decoder.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/oer_encoder.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/oer_support.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/oer_decoder.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/oer_encoder.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/oer_support.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OPEN_TYPE_oer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/INTEGER_oer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/BIT_STRING_oer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OCTET_STRING_oer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/NativeInteger_oer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_CHOICE_oer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE_oer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SET_OF_oer.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/per_decoder.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/per_encoder.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/per_support.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/per_opentype.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/per_decoder.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/per_encoder.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/per_support.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/per_opentype.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/uper_decoder.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/uper_encoder.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/uper_support.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/uper_opentype.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/uper_decoder.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/uper_encoder.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/uper_support.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/uper_opentype.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/ANY_uper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/BIT_STRING_uper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/INTEGER_uper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/NativeInteger_uper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OCTET_STRING_uper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OPEN_TYPE_uper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_CHOICE_uper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE_OF_uper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE_uper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SET_OF_uper.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/aper_decoder.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/aper_encoder.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/aper_support.h
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/aper_opentype.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/aper_decoder.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/aper_encoder.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/aper_support.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/aper_opentype.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/ANY_aper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/INTEGER_aper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/NativeInteger_aper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OCTET_STRING_aper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OPEN_TYPE_aper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_CHOICE_aper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE_OF_aper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE_aper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SET_OF_aper.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/BIT_STRING_print.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/INTEGER_print.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/NativeInteger_print.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OBJECT_IDENTIFIER_print.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OCTET_STRING_print.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_CHOICE_print.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE_print.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SET_OF_print.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_random_fill.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/asn_random_fill.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/BIT_STRING_rfill.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/INTEGER_rfill.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/NativeInteger_rfill.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OBJECT_IDENTIFIER_rfill.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OCTET_STRING_rfill.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_CHOICE_rfill.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE_rfill.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SET_OF_rfill.c
+ASN_MODULE_HDRS+=E:/repos/tap3reader/src/pdus/tap/3_01/jer_encoder.h
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/jer_encoder.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/ANY_jer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/BIT_STRING_jer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/INTEGER_jer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/NativeInteger_jer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OBJECT_IDENTIFIER_jer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/OCTET_STRING_jer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_CHOICE_jer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE_OF_jer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SEQUENCE_jer.c
+ASN_MODULE_SRCS+=E:/repos/tap3reader/src/pdus/tap/3_01/constr_SET_OF_jer.c
+
+ASN_MODULE_CFLAGS=
+
+lib_LTLIBRARIES+=libasncodec.la
+libasncodec_la_SOURCES=$(ASN_MODULE_SRCS) $(ASN_MODULE_HDRS)
+libasncodec_la_CPPFLAGS=-I$(top_srcdir)/E:/repos/tap3reader/src/pdus/tap/3_01/
+libasncodec_la_CFLAGS=$(ASN_MODULE_CFLAGS)
+libasncodec_la_LDFLAGS=-lm
