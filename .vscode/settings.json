@@ -11,5 +11,8 @@
         ".notes":true,
         "docs":true,
         // "tests":true,
+    },
+    "files.associations": {
+        "asn_application.h": "c"
     }
 }

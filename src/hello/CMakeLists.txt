@@ -19,7 +19,7 @@ target_sources(
 )
 
 target_include_directories(${PROJECT_NAME}
-    PRIVATE
+    PUBLIC
         # where the library itself will look for its internal headers
         # so I don't have big paths and less clutter
         ${CMAKE_CURRENT_SOURCE_DIR}/include
