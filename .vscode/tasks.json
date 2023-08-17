@@ -1,8 +1,11 @@
 //Remember to 'Terminal:Select Default Profile' and set it to regular old bash
 //Todo: Don't have the full path in cmake and ninja. Since that will cause issues on linux builds.
+//Todo: Fix paths with variable names for release.
+//https://code.visualstudio.com/docs/editor/variables-reference
 {
     "version":"2.0.0",
     "tasks": [
+// TOP TASKS
         {
             "type": "shell",
             "label": "Build Debug x64",
@@ -14,6 +17,19 @@
             "dependsOn":[
                 "cmake prep debug",
                 "ninja compile debug"
+            ]
+        },        
+        {
+            "type": "shell",
+            "label": "Build Current Folder Debug x64",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOrder": "sequence",
+            "dependsOn":[
+                "cmake prep debug current folder",
+                "ninja compile debug current folder"
             ]
         },
         {
@@ -29,27 +45,14 @@
                 "ninja compile release"
             ]
         },
+// DEBUGGING ENTIRE WORKSPACE
         {
             "type": "shell",
             "label": "cmake prep debug",
             "command": "C:/msys64/usr/bin/cmake.exe",
             "args": [
-                "-B build-debug",
+                "-B {workspaceFolder}/build/debug",
                 "-DCMAKE_BUILD_TYPE=Debug",
-                "-GNinja",
-                "-S ."
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "type": "shell",
-            "label": "cmake prep release",
-            "command": "C:/msys64/usr/bin/cmake.exe",
-            "args": [
-                "-B build",
                 "-GNinja",
                 "-S ."
             ],
@@ -64,8 +67,54 @@
             "command": "C:/msys64/usr/bin/ninja.exe",
             "args": [
                 "-C",
-                "build-debug",
+                "{workspaceFolder}/build/debug",
                 "-j8",
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+// DEBUGGING CURRENT FOLDER
+        {
+            "type": "shell",
+            "label": "cmake prep debug current folder",
+            "command": "C:/msys64/usr/bin/cmake.exe",
+            "args": [
+                "-B build/debug-${fileDirnameBasename}",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-GNinja",
+                "-S ${relativeFileDirname}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "ninja compile debug current folder",
+            "command": "C:/msys64/usr/bin/ninja.exe",
+            "args": [
+                "-C",
+                "${workspaceFolder}/build/debug-${fileDirnameBasename}",
+                "-j20",
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+// MAKING RELEASE OF ENTIRE WORKSPACE
+        {
+            "type": "shell",
+            "label": "cmake prep release",
+            "command": "C:/msys64/usr/bin/cmake.exe",
+            "args": [
+                "-B {workspaceFolder}/build/release",
+                "DCMAKE_BUILD_TYPE=Release",
+                "-GNinja",
+                "-S ."
             ],
             "group": {
                 "kind": "build",
@@ -78,7 +127,7 @@
             "command": "C:/msys64/usr/bin/ninja.exe",
             "args": [
                 "-C",
-                "build",
+                "{workspaceFolder}/build/release",
                 "-j8",
             ],
             "group": {

@@ -1,4 +1,5 @@
 # ignore build folders
 build
 build-debug
+build-release
 

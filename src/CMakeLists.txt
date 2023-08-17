@@ -13,9 +13,8 @@ project("main"
 
 add_subdirectory("hello")
 add_subdirectory("circle")
-add_subdirectory("readers")
 
 add_executable(main)
 
 target_sources(main PRIVATE main.c)
-target_link_libraries(main hello) 
+target_link_libraries(main CircleLibrary)  
