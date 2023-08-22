@@ -4,7 +4,7 @@ project(CircleDecoder)
 
 add_definitions("-DPDU=Circle")
 
-include(sources.cmake)
+include(pdu/sources.cmake)
 
 SET(LIBRARY_NAME CircleLibrary)
 
@@ -24,14 +24,15 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
     )
 
     target_link_libraries(${MAIN} ${LIBRARY_NAME})
+    set_target_properties(${MAIN} PROPERTIES OUTPUT_NAME "main")
 endif()
 
-set_target_properties(${MAIN} PROPERTIES OUTPUT_NAME "main")
+
 
 target_sources(
     ${PROJECT_NAME}
     PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/converter-example.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/pdu/converter-example.c
 )
 
 target_sources(
@@ -45,12 +46,12 @@ target_link_libraries(${PROJECT_NAME} ${LIBRARY_NAME})
 
 target_include_directories(${LIBRARY_NAME}
     PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}/pdu
 )
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
         # where the library itself will look for its internal headers
         # so I don't have big paths and less clutter
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${CMAKE_CURRENT_SOURCE_DIR}
 )

@@ -1,10 +1,58 @@
-# Set the project name
+cmake_minimum_required(VERSION 3.0)
+
 project (tapreader)
 
-# # Add a library with the above sources
-# add_library(${PROJECT_NAME} src/sublib1.cpp)
-# add_library(sub::lib1 ALIAS ${PROJECT_NAME})
+SET(LIBRARY_NAME tap3_readers)
 
-# target_include_directories( ${PROJECT_NAME}
-#     PUBLIC ${PROJECT_SOURCE_DIR}/include
+add_executable(${PROJECT_NAME})
+
+# When I want to debug I have a main file for testing quick functions. Temporary until Testing folders are up and running.
+if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
+    SET(MAIN TestMain)
+    add_executable(${MAIN})
+
+    target_sources(
+        ${MAIN}
+        PUBLIC
+            ${CMAKE_CURRENT_SOURCE_DIR}/tap3reader.c
+    )
+
+    target_link_libraries(${MAIN} ${LIBRARY_NAME})
+    set_target_properties(${MAIN} PROPERTIES OUTPUT_NAME "main")
+
+    target_include_directories(${MAIN}
+        PUBLIC
+            # where the library itself will look for its internal headers
+            # so I don't have big paths and less clutter
+            ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+endif()
+
+
+# target_sources(
+#     ${PROJECT_NAME}
+#     PUBLIC
+#         ${CMAKE_CURRENT_SOURCE_DIR}/pdu/converter-example.c
+# )
+
+# target_sources(
+#     ${LIBRARY_NAME}
+#     PUBLIC
+#         ${ASN_MODULE_SRCS}
+#         ${CMAKE_CURRENT_SOURCE_DIR}/circle_test.c
+# )
+
+# target_link_libraries(${PROJECT_NAME} ${LIBRARY_NAME})
+
+# target_include_directories(${LIBRARY_NAME}
+#     PUBLIC
+#         ${CMAKE_CURRENT_SOURCE_DIR}/pdu
+# )
+
+# target_include_directories(${PROJECT_NAME}
+#     PUBLIC
+#         # where the library itself will look for its internal headers
+#         # so I don't have big paths and less clutter
+#         ${CMAKE_CURRENT_SOURCE_DIR}
 # )
