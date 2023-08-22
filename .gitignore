@@ -4,3 +4,4 @@ build-debug
 build-release
 
 src/*/pdu/*
+!src/*/pdu/*.cmake
