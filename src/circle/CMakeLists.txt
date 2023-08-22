@@ -4,7 +4,7 @@ project(CircleDecoder)
 
 add_definitions("-DPDU=Circle")
 
-include(pdu/sources.cmake)
+include(pdu/_sources.cmake)
 
 SET(LIBRARY_NAME CircleLibrary)
 
