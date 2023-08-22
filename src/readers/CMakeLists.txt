@@ -1,10 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project (tapreader)
-
-SET(LIBRARY_NAME tap3_readers)
-
-add_executable(${PROJECT_NAME})
+project (tap3reader)
 
 # When I want to debug I have a main file for testing quick functions. Temporary until Testing folders are up and running.
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
@@ -17,7 +13,6 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
             ${CMAKE_CURRENT_SOURCE_DIR}/tap3reader.c
     )
 
-    target_link_libraries(${MAIN} ${LIBRARY_NAME})
     set_target_properties(${MAIN} PROPERTIES OUTPUT_NAME "main")
 
     target_include_directories(${MAIN}
