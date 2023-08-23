@@ -9,11 +9,11 @@ static int write_out(const void *buffer, size_t size, void *app_key);
 //30 09 02 01 05 02 01 0d 02 01 45
 static char circleData[] = {0x30, 0x09, 0x02, 0x01, 0x05, 0x02, 0x01, 0x0d, 0x02, 0x01, 0x45};
 
-// int main(int argc, char **argv)
-// {
-//     circle_menu();
-//     return 0;
-// }
+int main(int argc, char **argv)
+{
+    circle_menu();
+    return 0;
+}
 
 void circle_menu(){
     printf("Enter a choice: ");
@@ -23,6 +23,9 @@ void circle_menu(){
     switch(choice){
         case 'p':
             print_circle();
+            break;
+        case 'j':
+            print_jer_circle();
             break;
         case 'w':
             write_circle();
@@ -134,4 +137,18 @@ void print_circle()
     c->radius = 33;
     /* Print out the structure in XER */
     xer_fprint(stdout, &asn_DEF_Circle, c);
+}
+
+void print_jer_circle()
+{
+    Circle_t *c;
+    /* Allocate a new Circle */
+    c = calloc(1, sizeof *c);
+    assert(c); /* Infinite memory! */
+    /* Fill in the data */
+    c->position_x = 321;
+    c->position_y = 564584;
+    c->radius = 5;
+    /* Print out the structure in XER */
+    jer_fprint(stdout, &asn_DEF_Circle, c);
 }
