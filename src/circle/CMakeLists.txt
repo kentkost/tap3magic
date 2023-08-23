@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.0)
 project(CircleDecoder)
 
 add_definitions("-DPDU=Circle")
+# add_definitions("-DPDU=Rectangle")
 
 include(pdu/_sources.cmake)
 
@@ -37,7 +38,7 @@ target_sources(
 target_sources(
     ${LIBRARY_NAME}
     PUBLIC
-        ${ASN_MODULE_SRCS}
+        ${pdu_MODULE_SOURCES}
 )
 
 target_link_libraries(${PROJECT_NAME} ${LIBRARY_NAME})
