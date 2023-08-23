@@ -6,7 +6,7 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/tools/create_cmake_sources.py",
-            "args": ["${fileDirname}"],
+            "args": ["${fileDirname}", "${fileDirnameBasename}"],
             "console": "integratedTerminal",
             "justMyCode": true
         },
