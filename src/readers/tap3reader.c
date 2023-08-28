@@ -94,7 +94,7 @@ void decode_ber_datainterchange(char *path)
     /* Decode the input buffer as circle type */
     syntax_selector sel = input_encoders[0];
     rval = sel.func(0, &asn_DEF_DataInterChange, (void **)&datainterchange, buf, size);
-    rval = ber_decode(0, &asn_DEF_DataInterChange, (void **)&datainterchange, buf, size);
+    // rval = ber_decode(0, &asn_DEF_DataInterChange, (void **)&datainterchange, buf, size);
     
     if(rval.code != RC_OK) {
         fprintf(stderr, "%s: Broken datainterchange encoding at byte %ld\n", filename, (long)rval.consumed);
