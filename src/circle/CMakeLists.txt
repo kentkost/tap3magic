@@ -4,6 +4,8 @@ project(CircleDecoder)
 
 add_definitions("-DPDU=Circle")
 # add_definitions("-DPDU=Rectangle")
+# add_definitions("-DPDU=all")
+# add_definitions("-DPDU=auto")
 
 include(pdu/_sources.cmake)
 

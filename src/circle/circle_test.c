@@ -94,7 +94,7 @@ void decode_circle()
     Circle_t *circle = 0; /* Type to decode. Note this 0! */
     FILE *fp; /* Input file handler */
     size_t size; /* Number of bytes read */
-    char *filename="circleBerEncoded.ber"; /* Input file name */
+    char *filename="E:\\repos\\tap3reader\\sample-data\\workingCircle.der"; /* Input file name */
 
     /* Open input file as read-only binary */
     fp = fopen(filename, "rb");
@@ -113,8 +113,8 @@ void decode_circle()
     }
 
     /* Decode the input buffer as circle type */
-    // rval = ber_decode(0, &asn_DEF_Circle, (void **)&circle, buf, size);
-    rval = ber_decode(0, &asn_DEF_Circle, (void **)&circle, circleData, size);
+    rval = ber_decode(0, &asn_DEF_Circle, (void **)&circle, buf, size);
+    // rval = ber_decode(0, &asn_DEF_Circle, (void **)&circle, circleData, size);
     
     if(rval.code != RC_OK) {
         fprintf(stderr, "%s: Broken Circle encoding at byte %ld\n", filename, (long)rval.consumed);

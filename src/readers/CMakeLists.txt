@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.0)
 project (tap3reader)
 
 add_definitions("-DPDU=DataInterChange")
+add_definitions("-DJUNKTEST")
 
 include("TAP0311/_sources.cmake")
 

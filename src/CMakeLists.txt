@@ -13,6 +13,7 @@ project("main"
 
 add_subdirectory("hello")
 add_subdirectory("circle")
+add_subdirectory("readers")
 
 add_executable(main)
 

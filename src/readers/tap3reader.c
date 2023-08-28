@@ -3,8 +3,10 @@
 #include <stdio.h>
 #include "DataInterChange.h"
 
-void decode_ber_datainterchange();
+void decode_ber_datainterchange(char *path);
 void tap0311_menu();
+static void * get_decoder(int x);
+const char* decode_tap0311(int inputSelector, int outputSelector, char *inputBytes);
 
 int main(int argc, char** argv)
 {
@@ -23,18 +25,30 @@ int main(int argc, char** argv)
     // printf("You've chosen version %s with %s codec", version_str[tap3version], codec_str[codec]);
 }
 
-void tap0311_menu(){
-    decode_ber_datainterchange();
+static void tap0311_menu(){
+    // decode_ber_datainterchange("E:\\repos\\tap3reader\\sample-data\\tap3-sample-DataInterChange-3_11.ber");
+    decode_tap0311(0,1,"ree");
 }
 
-void decode_ber_datainterchange()
+
+const char* decode_tap0311(int inputSelector, int outputSelector, char *inputBytes)
 {
-    char buf[1024]; /* Temporary buffer */
+
+}
+
+static void * get_decoder(int inputFormat)
+{
+    
+}
+
+void decode_ber_datainterchange(char *path)
+{
     asn_dec_rval_t rval; /* Decoder return value */
-    Circle_t *circle = 0; /* Type to decode. Note this 0! */
+    DataInterChange_t *datainterchange = 0; /* Type to decode. Note this 0! */
     FILE *fp; /* Input file handler */
     size_t size; /* Number of bytes read */
-    char *filename="circleBerEncoded.ber"; /* Input file name */
+    // char *filename="E:\\repos\\tap3reader\\sample-data\\tap3-sample-DataInterChange-3_11.ber"; /* Input file name */
+    char *filename="E:\\repos\\tap3reader\\build\\debug-readers\\tap3-sample-DataInterChange-3_11.ber"; /* Input file name */
 
     /* Open input file as read-only binary */
     fp = fopen(filename, "rb");
@@ -43,24 +57,31 @@ void decode_ber_datainterchange()
         exit(1);
     }
 
+    fseek(fp, 0L, SEEK_END);
+    int buffer_size = ftell(fp);
+    rewind(fp);
+    
+    char buf[buffer_size];
+
     /* Read up to the buffer size */
     size = fread(buf, 1, sizeof(buf), fp);
-    fclose(fp);
 
+    fclose(fp);
     if(!size) {
         fprintf(stderr, "%s: Empty or broken\n", filename);
         exit(1);
     }
 
     /* Decode the input buffer as circle type */
-    // rval = ber_decode(0, &asn_DEF_Circle, (void **)&circle, buf, size);
-    rval = ber_decode(0, &asn_DEF_Circle, (void **)&circle, circleData, size);
+    rval = ber_decode(0, &asn_DEF_DataInterChange, (void **)&datainterchange, buf, size);
     
     if(rval.code != RC_OK) {
-        fprintf(stderr, "%s: Broken Circle encoding at byte %ld\n", filename, (long)rval.consumed);
+        fprintf(stderr, "%s: Broken datainterchange encoding at byte %ld\n", filename, (long)rval.consumed);
         exit(1);
     }
 
     /* Print the decoded circle type as XML */
-    xer_fprint(stdout, &asn_DEF_Circle, circle);
+    // xer_fprint(stdout, &asn_DEF_DataInterChange, datainterchange);
+    jer_fprint(stdout, &asn_DEF_DataInterChange, datainterchange);
 }
+
