@@ -3,10 +3,28 @@
 #include <stdio.h>
 #include "DataInterChange.h"
 
+typedef asn_dec_rval_t (*pfn_decoder)(const asn_codec_ctx_t *opt_codec_ctx,const asn_TYPE_descriptor_t *type_descriptor, void **struct_ptr,const void *ptr, size_t size) ;
+
+typedef struct {
+    const char *name;
+    enum asn_transfer_syntax syntax;
+    pfn_decoder func;
+    const char *full_name;
+} syntax_selector;
+
 void decode_ber_datainterchange(char *path);
-void tap0311_menu();
+static void tap0311_menu();
 static void * get_decoder(int x);
 const char* decode_tap0311(int inputSelector, int outputSelector, char *inputBytes);
+
+static const syntax_selector input_encoders[] = {
+    {
+        "ber", 
+        ATS_BER, 
+        ber_decode,
+        "input is BER or DER"
+    },
+};
 
 int main(int argc, char** argv)
 {
@@ -26,8 +44,8 @@ int main(int argc, char** argv)
 }
 
 static void tap0311_menu(){
-    // decode_ber_datainterchange("E:\\repos\\tap3reader\\sample-data\\tap3-sample-DataInterChange-3_11.ber");
-    decode_tap0311(0,1,"ree");
+    decode_ber_datainterchange("E:\\repos\\tap3reader\\sample-data\\tap3-sample-DataInterChange-3_11.ber");
+    // decode_tap0311(0,1,"ree");
 }
 
 
@@ -38,7 +56,8 @@ const char* decode_tap0311(int inputSelector, int outputSelector, char *inputByt
 
 static void * get_decoder(int inputFormat)
 {
-    
+
+
 }
 
 void decode_ber_datainterchange(char *path)
@@ -73,6 +92,8 @@ void decode_ber_datainterchange(char *path)
     }
 
     /* Decode the input buffer as circle type */
+    syntax_selector sel = input_encoders[0];
+    rval = sel.func(0, &asn_DEF_DataInterChange, (void **)&datainterchange, buf, size);
     rval = ber_decode(0, &asn_DEF_DataInterChange, (void **)&datainterchange, buf, size);
     
     if(rval.code != RC_OK) {

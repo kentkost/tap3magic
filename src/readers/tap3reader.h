@@ -27,4 +27,5 @@ const char * const version_str[] =
     [TAP0312] = "TAP0312",
 };
 
+
 #endif
