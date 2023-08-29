@@ -43,7 +43,7 @@
             "program": "${workspaceFolder}/build/debug-${fileDirnameBasename}/main.exe",
             // "program": "${workspaceFolder}/build/debug-${fileDirnameBasename}/tap3reader.exe",
             // "program": "${workspaceFolder}/build/debug-${fileDirnameBasename}/CircleConverter.exe",
-            // "args": ["-iber", "-oxer", "E:\\repos\\tap3reader\\sample-data\\tap3-sample-DataInterChange-3_11.ber"],
+            "args": ["-iber", "-oxer", "E:\\repos\\tap3reader\\sample-data\\tap3-sample-DataInterChange-3_11.ber"],
             // "args": ["-J1", "-R3840000", ""],
             // "args": ["-J1", "-R1200", "-oxer", ">> datainterchangejunk.xer"],
             "stopAtEntry": false,
