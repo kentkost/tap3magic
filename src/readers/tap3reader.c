@@ -15,6 +15,7 @@ typedef struct {
 } syntax_selector;
 
 void decode_ber_datainterchange(char *path);
+void generic_buffer_decode_datainterchange(char *path);
 static void tap0311_menu();
 static void * get_decoder(int x);
 const char* decode_tap0311(int inputSelector, int outputSelector, char *inputBytes);
@@ -82,7 +83,52 @@ void decode_ber_datainterchange(char *path)
     int buffer_size = ftell(fp);
     rewind(fp);
     
-    // char buf[buffer_size];
+    char buf[buffer_size];
+    /* Read the entire file */
+    size = fread(buf, 1, sizeof(buf), fp);
+
+    fclose(fp);
+    if(!size) {
+        fprintf(stderr, "%s: Empty or broken\n", filename);
+        exit(1);
+    }
+
+    /* Decode the input buffer as circle type */
+    syntax_selector sel = input_encoders[0];
+    rval = sel.func(0, &asn_DEF_DataInterChange, (void **)&datainterchange, buf, size); // using function pointer
+    // rval = ber_decode(0, &asn_DEF_DataInterChange, (void **)&datainterchange, buf, size); // direct reference
+
+    if(rval.code != RC_OK) {
+        fprintf(stderr, "%s: Broken datainterchange encoding at byte %ld\n", filename, (long)rval.consumed);
+        exit(1);
+    }
+
+    /* Print the decoded circle type as XML */
+    // xer_fprint(stdout, &asn_DEF_DataInterChange, datainterchange);
+    jer_fprint(stdout, &asn_DEF_DataInterChange, datainterchange);
+}
+
+void generic_buffer_decode_datainterchange(char *path)
+{
+    asn_dec_rval_t rval; /* Decoder return value */
+    DataInterChange_t *datainterchange = 0; /* Type to decode. Note this 0! */
+    FILE *fp; /* Input file handler */
+    size_t size; /* Number of bytes read */
+    // char *filename="E:\\repos\\tap3reader\\sample-data\\tap3-sample-DataInterChange-3_11.ber"; /* Input file name */
+    char *filename="E:\\repos\\tap3reader\\build\\debug-readers\\tap3-sample-DataInterChange-3_11.ber"; /* Input file name */
+
+    /* Open input file as read-only binary */
+    fp = fopen(filename, "rb");
+    if(!fp) {
+        perror(filename);
+        exit(1);
+    }
+
+    fseek(fp, 0L, SEEK_END);
+    int buffer_size = ftell(fp);
+    rewind(fp);
+    
+    // set the size of the byte array to some arbitrary length. buffer_size is enough.
     static uint8_t *buf;
     buf = (uint8_t *)REALLOC(buf, 8192);
     /* Read up to the buffer size */
@@ -96,18 +142,14 @@ void decode_ber_datainterchange(char *path)
     }
 
     // Test code
-    asn_codec_ctx_t s_codec_ctx;
     asn_codec_ctx_t *opt_codec_ctx = 0;
     enum asn_transfer_syntax isyntax = ATS_BER;
     asn_TYPE_descriptor_t *pduType = &asn_DEF_DataInterChange;
     static uint8_t *fbuf = 0;
-    uint8_t *i_bptr = buf;
+    uint8_t *i_bptr = buf; //the next place to read from. The idea is that you update this constantly as you buffer through the file.
     size_t   i_size = size;
     
     /* Decode the input buffer as circle type */
-    syntax_selector sel = input_encoders[0];
-    // rval = sel.func(0, &asn_DEF_DataInterChange, (void **)&datainterchange, buf, size); // using function pointer
-    // rval = ber_decode(0, &asn_DEF_DataInterChange, (void **)&datainterchange, buf, size); // direct reference
     rval = asn_decode(opt_codec_ctx, isyntax, pduType, (void **)&datainterchange, i_bptr, i_size); //using asn_application.h
 
     if(rval.code != RC_OK) {
