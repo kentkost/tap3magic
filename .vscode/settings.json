@@ -13,6 +13,7 @@
         // "tests":true,
     },
     "files.associations": {
-        "asn_application.h": "c"
+        "asn_application.h": "c",
+        "tap3reader.h": "c"
     }
 }
