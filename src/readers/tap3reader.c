@@ -11,7 +11,7 @@ typedef struct {
 } syntax_selector;
 
 static void tap0311_menu();
-extern char* decode_tap0311_datainterchange(int inputSelector, int outputSelector, char *inputBytes);
+extern char* decode_tap0311_datainterchange(int inputSelector, int outputSelector, char *file_path);
 
 static const syntax_selector encodings[] = {
     [BER]   = {"BER", ATS_BER},
@@ -27,17 +27,6 @@ int main(int argc, char** argv)
 {
     tap0311_menu();
     return 0;
-
-    // enum version tap3version;
-    // printf("What version: ");
-    // scanf("%d", &tap3version);
-    
-    // // DER, BER, OER, XER, PER, UPER, JER
-    // enum codec codec;
-    // printf("What codec: ");
-    // scanf("%d", &codec);    
-
-    // printf("You've chosen version %s with %s codec", version_str[tap3version], codec_str[codec]);
 }
 
 static void tap0311_menu(){
@@ -48,8 +37,12 @@ static void tap0311_menu(){
 /* Dump the buffer out to the specified FILE */
 static int write_out(const void *buffer, size_t size, void *key) {
     FILE *fp = (FILE *)key;
-    return (fwrite(buffer, 1, size, fp) == size) ? 0 : -1;
+    // char *buf = malloc(sizeof(char)*8192);
+    // memcpy(buf,buffer, size);
+    int res = fwrite(buffer, 1, size, fp) == size ? 0 : -1;
+    return res;
 }
+
 
 extern char* decode_tap0311_datainterchange(int input_selector, int output_selector, char *file_path)
 {
