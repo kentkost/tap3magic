@@ -6,9 +6,6 @@
 #include <asn_application.h>
 #include <asn_internal.h>    /* for ASN__DEFAULT_STACK_MAX */
 
-char *global_buf;
-int offset = 0;
-
 struct xer_buffer {
     char *buffer;
     size_t buffer_size;
@@ -44,16 +41,18 @@ static void tap0311_menu(){
     // decode_tap0311(0,1,"ree");
 }
 
-/* Dump the buffer out to the specified FILE */
-static int write_out(const void *buffer, size_t size, void *key) {
-    FILE *fp = (FILE *)key;
+// char *global_buf;
+// int offset = 0;
+// /* Dump the buffer out to the specified FILE */
+// static int write_out(const void *buffer, size_t size, void *key) {
+//     FILE *fp = (FILE *)key;
     
-    memcpy(global_buf+offset, buffer, size);
-    int res = fwrite(buffer, 1, size, fp) == size ? 0 : -1;
-    offset+=size;
+//     memcpy(global_buf+offset, buffer, size);
+//     int res = fwrite(buffer, 1, size, fp) == size ? 0 : -1;
+//     offset+=size;
     
-    return res;
-}
+//     return res;
+// }
 
 extern char* decode_tap0311_datainterchange(int input_selector, int output_selector, char *file_path)
 {
@@ -109,10 +108,11 @@ extern char* decode_tap0311_datainterchange(int input_selector, int output_selec
     /* Print the decoded circle type as XML */
     // xer_fprint(stdout, &asn_DEF_DataInterChange, datainterchange);
     enum asn_transfer_syntax osyntax = output_sel.syntax;
-    global_buf = malloc(sizeof(char)*8192);
+    // global_buf = malloc(sizeof(char)*8192);
     FILE *res;
     res = fopen("E:\\repos\\tap3reader\\build\\debug-readers\\resultHere.xml", "w+");
-    xer_fprint(res, &asn_DEF_DataInterChange, datainterchange);
+    xer_fprint(stdout, &asn_DEF_DataInterChange, datainterchange);
+    // xer_fprint(res, &asn_DEF_DataInterChange, datainterchange);
     // asn_enc_rval_t encode_res = asn_encode(NULL, osyntax, pduType, datainterchange, write_out, stdout);
 
     free(buf);

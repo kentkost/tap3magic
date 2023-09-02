@@ -14,6 +14,12 @@
     },
     "files.associations": {
         "asn_application.h": "c",
-        "tap3reader.h": "c"
+        "tap3reader.h": "c",
+        "asn_internal.h": "c",
+        "ASN_INTERNAL.H": "cpp",
+        "datainterchange.h": "c",
+        "asn_system.h": "c",
+        "asn_codecs.h": "c",
+        "asn_config.h": "c"
     }
 }
