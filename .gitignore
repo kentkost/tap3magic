@@ -8,5 +8,5 @@ src/*/pdu/*
 !src/*/pdu/*.cmake
 
 # Ignore tap3 pdus
-!src/readers/TAP*/*.cmake
-src/readers/TAP*/
+src/readers/TAP*
+!src/readers/TAP0311/*.cmake
