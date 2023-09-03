@@ -88,38 +88,42 @@ static int
 xer__assign2str(const void *buffer, size_t size, const void *app_key) {
 	const char* s = (const char *)app_key;
     static const char* stream = 0;
-
-    if(size == 0){
-        printf("break here");
-    }
+    static size_t size_buffer = 0;
 
     if(stream == 0){ //BUG. This will never get reset.
         stream = s;
     }
 
-    char *prev = malloc(size_buf*sizeof(char));
-    memcpy(prev, stream, size_buf);
+    char *prev = malloc(size_buffer*sizeof(char));
+    memcpy(prev, stream, size_buffer);
 
     char *new_part = malloc(sizeof(char)*size);
     memcpy(new_part, buffer, sizeof(char)*size);
 
-    size_buf += size;
+    if(size_buffer == 4463){
+        printf("break here");
+    }
 
-    char *new = malloc(sizeof(char)*size_buf);
-    memcpy(new,prev, size_buf-size);
-    memcpy(new+size_buf-size, new_part, size);
+    size_buffer += size;
+
+    char *new = malloc(sizeof(char)*size_buffer);
+    memcpy(new,prev, size_buffer-size);
+    memcpy(new+size_buffer-size, new_part, size);
     
     free(stream);
     stream = new;
 
+    // reset stream and size_buffer at the end. 
+    // abusing fact that a PDU always ends with a newline.
+    if(size > 1 && new_part[size-1] == '\n'){
+        stream = 0;
+        size_buffer = 0;
+    }
+
     free(prev);
     free(new_part);
-    
-    // print_part(stream, size_buf);
 
-	// if(fwrite(buffer, 1, size, stream) != size)
-	// 	return -1;
-
+    // print_part(stream, size_buffer);
 	return 0;
 }
 
