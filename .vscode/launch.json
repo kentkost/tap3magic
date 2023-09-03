@@ -43,7 +43,7 @@
             "program": "${workspaceFolder}/build/debug-${fileDirnameBasename}/main.exe",
             // "program": "${workspaceFolder}/build/debug-${fileDirnameBasename}/tap3reader.exe",
             // "program": "${workspaceFolder}/build/debug-${fileDirnameBasename}/CircleConverter.exe",
-            "args": ["-iber", "-oxer", "E:\\repos\\tap3reader\\sample-data\\tap3-sample-DataInterChange-3_11.ber"],
+            "args": ["-iber", "-oxer", "E://repos//tap3reader//sample-data//tap3-sample-DataInterChange-3_11.ber"],
             // "args": ["-J1", "-R3840000", ""],
             // "args": ["-J1", "-R1200", "-oxer", ">> datainterchangejunk.xer"],
             "stopAtEntry": false,
@@ -51,7 +51,8 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "C:/msys64/mingw64/bin/gdb.exe",
+            "miDebuggerPath": "C:/msys64/usr/bin/gdb.exe",
+            // "miDebuggerPath": "C:/msys64/mingw64/bin/gdb.exe",
             "setupCommands": [{
                     "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
