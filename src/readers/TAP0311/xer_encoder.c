@@ -85,18 +85,21 @@ xer_fprint(FILE *stream, const asn_TYPE_descriptor_t *td, const void *sptr) {
  * into a buffer
  */
 static int
-xer__assign2str(const void *buffer, size_t size, const void *app_key) {
-	const char* s = (const char *)app_key;
+xer__assign2str(const void *buffer, size_t size, const char ** app_key) {
+	const char* s = *(&app_key);
     static const char* stream = 0;
     static size_t size_buffer = 0;
 
-    if(stream == 0){ //BUG. This will never get reset.
-        stream = s;
-    }
+    // if(stream == 0){ //BUG. This will never get reset.
+    //     stream = s;
+    //     stream = malloc(0);
+    // }
 
+    // READ PREVIOUS VALUE
     char *prev = malloc(size_buffer*sizeof(char));
-    memcpy(prev, stream, size_buffer);
+    memcpy(prev, *app_key, size_buffer);
 
+    // READ NEW VALUE FROM BUFFER
     char *new_part = malloc(sizeof(char)*size);
     memcpy(new_part, buffer, sizeof(char)*size);
 
@@ -105,20 +108,20 @@ xer__assign2str(const void *buffer, size_t size, const void *app_key) {
     }
 
     size_buffer += size;
-
+    
+    // APPEND NEW TO PREVIOUS
     char *new = malloc(sizeof(char)*size_buffer);
     memcpy(new,prev, size_buffer-size);
     memcpy(new+size_buffer-size, new_part, size);
     
-    free(stream);
-    stream = new;
+    *app_key = new;
 
     // reset stream and size_buffer at the end. 
     // abusing fact that a PDU always ends with a newline.
-    if(size > 1 && new_part[size-1] == '\n'){
-        stream = 0;
-        size_buffer = 0;
-    }
+    // if(size == 2 && new_part[size-1] == '\n'){
+    //     stream = 0;
+    //     size_buffer = 0;
+    // }
 
     free(prev);
     free(new_part);
@@ -129,7 +132,7 @@ xer__assign2str(const void *buffer, size_t size, const void *app_key) {
 
 
 int
-xer_assign(const char * const buffer, const asn_TYPE_descriptor_t *td, const void *sptr){
+xer_assign(const char **buffer, const asn_TYPE_descriptor_t *td, const void *sptr){
 	asn_enc_rval_t er = {0,0,0};
 
 	if(!td || !sptr)

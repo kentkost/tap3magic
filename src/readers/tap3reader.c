@@ -112,15 +112,16 @@ extern char* decode_tap0311_datainterchange(int input_selector, int output_selec
     FILE *res;
     //res = fopen("E:\\repos\\tap3reader\\build\\debug-readers\\resultHere.xml", "w+");
     // xer_fprint(stdout, &asn_DEF_DataInterChange, datainterchange);
-    const char * const buffer = malloc(0);
-    //int enc = xer_assign(buffer, &asn_DEF_DataInterChange, datainterchange);
-    //enc = xer_assign(buffer, &asn_DEF_DataInterChange, datainterchange);
+    const char **buffer = malloc(0);
+    int enc = xer_assign(buffer, &asn_DEF_DataInterChange, datainterchange);
+    // enc = xer_assign(buffer, &asn_DEF_DataInterChange, datainterchange);
     // xer_fprint(res, &asn_DEF_DataInterChange, datainterchange);
-    xer_fprint(stdout, &asn_DEF_DataInterChange, datainterchange);
+    // xer_fprint(stdout, &asn_DEF_DataInterChange, datainterchange);
     // asn_enc_rval_t encode_res = asn_encode(NULL, osyntax, pduType, datainterchange, write_out, stdout);
-    //char ree[enc+2];
-    //memcpy(ree, buffer,enc);
-    //ree[enc+1] = 0;
-    //printf("%s", ree);
+    char *ree = calloc(enc+1, sizeof(char));
+    memcpy(ree, *buffer,enc);
+    ree[enc+1] = 0;
+    printf("%s", ree);
     free(buf);
+    free(ree);
 }

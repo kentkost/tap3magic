@@ -42,7 +42,7 @@ asn_enc_rval_t xer_encode(const struct asn_TYPE_descriptor_s *type_descriptor,
 int xer_fprint(FILE *stream, const struct asn_TYPE_descriptor_s *td,
                const void *struct_ptr);
 
-int xer_assign(const char *buffer, const struct asn_TYPE_descriptor_s *td,
+int xer_assign(const char * const buffer, const struct asn_TYPE_descriptor_s *td,
                const void *struct_ptr);
 
 /*
