@@ -39,10 +39,18 @@ asn_enc_rval_t xer_encode(const struct asn_TYPE_descriptor_s *type_descriptor,
  * 	-1: Problem printing the structure.
  * WARNING: No sensible errno value is returned.
  */
+
+struct xer_buffer {
+    char *buffer;
+    size_t buffer_size;
+    size_t allocated_size;
+};
+
 int xer_fprint(FILE *stream, const struct asn_TYPE_descriptor_s *td,
                const void *struct_ptr);
 
-xer_assign(const char **buffer, const struct asn_TYPE_descriptor_s *td, const void *sptr);
+int xer_assign(const char **buffer, const struct asn_TYPE_descriptor_s *td, const void *sptr);
+int new_xer_assign(struct xer_buffer buf, const struct asn_TYPE_descriptor_s *td, const void *sptr);
 
 /*
  * A helper function that uses XER encoding/decoding to verify that:

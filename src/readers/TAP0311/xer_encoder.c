@@ -85,15 +85,8 @@ xer_fprint(FILE *stream, const asn_TYPE_descriptor_t *td, const void *sptr) {
  * into a buffer
  */
 static int
-xer__assign2str(const void *buffer, size_t size, const char ** app_key) {
-	const char* s = *(&app_key);
-    static const char* stream = 0;
+xer__assign2str(const void *buffer, size_t size, const char **app_key) {
     static size_t size_buffer = 0;
-
-    // if(stream == 0){ //BUG. This will never get reset.
-    //     stream = s;
-    //     stream = malloc(0);
-    // }
 
     // READ PREVIOUS VALUE
     char *prev = malloc(size_buffer*sizeof(char));
@@ -110,18 +103,11 @@ xer__assign2str(const void *buffer, size_t size, const char ** app_key) {
     size_buffer += size;
     
     // APPEND NEW TO PREVIOUS
-    char *new = malloc(sizeof(char)*size_buffer);
+    char *new = realloc(*app_key,sizeof(char)*size_buffer);
     memcpy(new,prev, size_buffer-size);
     memcpy(new+size_buffer-size, new_part, size);
     
     *app_key = new;
-
-    // reset stream and size_buffer at the end. 
-    // abusing fact that a PDU always ends with a newline.
-    // if(size == 2 && new_part[size-1] == '\n'){
-    //     stream = 0;
-    //     size_buffer = 0;
-    // }
 
     free(prev);
     free(new_part);
@@ -145,12 +131,6 @@ xer_assign(const char **buffer, const asn_TYPE_descriptor_t *td, const void *spt
     return er.encoded;
 }
 
-struct xer_buffer {
-    char *buffer;
-    size_t buffer_size;
-    size_t allocated_size;
-};
-
 static int
 xer__buffer_append(const void *buffer, size_t size, void *app_key) {
     struct xer_buffer *xb = app_key;
@@ -171,6 +151,20 @@ xer__buffer_append(const void *buffer, size_t size, void *app_key) {
     xb->buffer_size += size;
     xb->buffer[xb->buffer_size] = '\0';
     return 0;
+}
+
+int new_xer_assign(struct xer_buffer app_key, const asn_TYPE_descriptor_t *td, const void *sptr){
+    asn_enc_rval_t er = {0,0,0};
+
+	if(!td || !sptr)
+		return -1;
+
+    struct xer_buffer xb1 = {0,0,0};
+	er = xer_encode(td, sptr, XER_F_BASIC, xer__buffer_append, &app_key);
+	if(er.encoded == -1)
+		return -1;
+        
+    return er.encoded;
 }
 
 enum xer_equivalence_e
