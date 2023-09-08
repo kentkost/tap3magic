@@ -1,1 +1,1 @@
-This is just an initial readme
+This library is meant to be used to read TAP3 files.
