@@ -15,8 +15,12 @@ static void tap0311_menu();
 extern char* decode_tap0311_datainterchange(int inputSelector, int outputSelector, char *file_path);
 
 // Decoders
-static char* decode_datainterchange_buffer(int input_selector, char *file_path);
+static DataInterChange_t* decode_datainterchange_buffer(int input_selector, char *file_path);
 static DataInterChange_t* decode_datainterchange_file(int input_selector, char *file_path);
+
+// For testing decode_di_buffer
+static size_t read_file_into_buffer(char *file_path, uint8_t** buffer);
+
 // Encoders
 static char* encode_datainterchange_2buffer(DataInterChange_t* datainterchange, int output_selector);
 static int encode_datainterchange_2file(DataInterChange_t* datainterchange, int output_selector, char* filename);
@@ -24,6 +28,8 @@ static int encode_datainterchange_2file(DataInterChange_t* datainterchange, int 
 extern char* decode_tap0311_datainterchange_file2file(int input_selector, int output_selector, char *file_path, char *newfileName);
 extern char* decode_tap0311_datainterchange_buffer2file(int input_selector, int output_selector, char *in_buffer, char *newFileName);
 extern char* decode_tap0311_datainterchange_buffer2buffer(int input_selector, int output_selector, char *in_buffer, char *out_buffer);
+
+
 
 static int write_out(const void *buffer, size_t size, void *key) {
     FILE *fp = (FILE *)key;
@@ -43,21 +49,58 @@ static const syntax_selector encodings[] = {
 int main(int argc, char** argv)
 {
     tap0311_menu();
-    return 1;
+    return 0;
 }
 
 static void tap0311_menu(){
-
-    DataInterChange_t *ree = decode_datainterchange_file(0, "reee");
+    uint8_t **buffer;
+    *buffer = 0;
+    size_t bytes_to_encode = read_file_into_buffer("char *file_path", buffer);
+    // DataInterChange_t *ree = decode_datainterchange_file(0, "reee");
     // char* encoded_xml = encode_datainterchange_2buffer(ree, 2);
-    int encoded_bytes = encode_datainterchange_2file(ree, 2, "somepath/result.xml");
+    // int encoded_bytes = encode_datainterchange_2file(ree, 2, "somepath/result.xml");
 
     // decode_tap0311_datainterchange(0,2,"E:\\repos\\tap3magic\\sample-data\\tap3-sample-DataInterChange-3_11.ber");
     // decode_tap0311(0,1,"ree");
 }
 
+static size_t read_file_into_buffer(char *file_path, uint8_t** buffer){
+    FILE *fp; /* Input file handler */
+    size_t size; /* Number of bytes read */
+    
+    char *path="E:\\repos\\tap3magic\\build\\debug-readers\\tap3-sample-DataInterChange-3_11.ber"; /* Input file name */
+    // char *path = file_path;
+
+    /* Open input file as read-only binary */
+    fp = fopen(path, "rb");
+    if(!fp) {
+        perror(path);
+        exit(1);
+    }
+    
+    fseek(fp, 0L, SEEK_END);
+    int buffer_size = ftell(fp);
+    rewind(fp);
+    
+    // set the size of the byte array to some length. buffer_size is minimal.
+    static uint8_t *buf;
+    buf = (uint8_t *)REALLOC(buf, buffer_size);
+    size = fread(buf, 1, buffer_size, fp);
+
+    fclose(fp);
+    if(!size) {
+        fprintf(stderr, "%s: Empty or broken\n", path);
+        exit(1);
+    }
+
+    *buffer = buf;
+
+
+    return size;
+}
+
 static DataInterChange_t* decode_datainterchange_file(int input_selector, char *file_path){
-        // function to validate selection.
+    // function to validate selection.
     syntax_selector input_sel = encodings[input_selector];
     asn_dec_rval_t decode_result; /* Decoder return value */
     DataInterChange_t *datainterchange = 0; /* Type to decode. Note this 0! */
@@ -78,7 +121,7 @@ static DataInterChange_t* decode_datainterchange_file(int input_selector, char *
     int buffer_size = ftell(fp);
     rewind(fp);
     
-    // set the size of the byte array to some arbitrary length. buffer_size is enough.
+    // set the size of the byte array to some length. buffer_size is minimal.
     static uint8_t *buf;
     buf = (uint8_t *)REALLOC(buf, buffer_size);
     size = fread(buf, 1, buffer_size, fp);
@@ -108,7 +151,8 @@ static DataInterChange_t* decode_datainterchange_file(int input_selector, char *
 }
 
 
-static char* decode_datainterchange_buffer(int input_selector, char *file_path){
+static DataInterChange_t* decode_datainterchange_buffer(int input_selector, char *buffer){
+
     return 0;
 }
 
