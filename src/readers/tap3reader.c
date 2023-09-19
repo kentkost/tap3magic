@@ -44,6 +44,7 @@ int main(int argc, char** argv)
 static void tap0311_menu(){
 
     DataInterChange_t *ree = decode_datainterchange_file(0, "reee");
+    char* encoded_xml = encode_datainterchange_2buffer(ree, 2);
     // decode_tap0311_datainterchange(0,2,"E:\\repos\\tap3magic\\sample-data\\tap3-sample-DataInterChange-3_11.ber");
     // decode_tap0311(0,1,"ree");
 }
@@ -106,6 +107,17 @@ static char* decode_datainterchange_buffer(int input_selector, char *file_path){
 
 static char* encode_datainterchange_2buffer(DataInterChange_t* datainterchange, int output_selector){
 
+    asn_TYPE_descriptor_t *pduType = &asn_DEF_DataInterChange;
+
+    enum asn_transfer_syntax osyntax = encodings[output_selector].syntax;
+
+    asn_encode_to_new_buffer_result_t res = asn_encode_to_new_buffer(NULL, osyntax, pduType, datainterchange);
+    char *ree = calloc(res.result.encoded, sizeof(char));
+    memcpy(ree, res.buffer, res.result.encoded);
+#ifdef DEBUGGER_ATTACHED
+    puts(ree);
+#endif
+    return ree;
 }
 
 static char* encode_datainterchange_2file(DataInterChange_t* datainterchange, int output_selector, char* filename){
@@ -184,7 +196,7 @@ extern char* decode_tap0311_datainterchange_file2buffer(int input_selector, int 
     // FILE *res;
     //res = fopen("E:\\repos\\tap3reader\\build\\debug-readers\\resultHere.xml", "w+");
     // xer_fprint(stdout, &asn_DEF_DataInterChange, datainterchange);
-    
+
     // const char **buffer = malloc(0);
     // int enc = xer_assign(buffer, &asn_DEF_DataInterChange, datainterchange);
 

@@ -5,9 +5,15 @@ project (tap3reader)
 add_definitions("-DPDU=DataInterChange")
 add_definitions("-DJUNKTEST")
 
+
+if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+    add_definitions("-DDEBUGGER_ATTACHED")
+endif()
+
 include("TAP0311/_sources.cmake")
 
 SET(LIBRARY_NAME "tap0311")
+
 
 add_library(${LIBRARY_NAME} SHARED)
 
