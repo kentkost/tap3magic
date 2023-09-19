@@ -19,11 +19,16 @@ static char* decode_datainterchange_buffer(int input_selector, char *file_path);
 static DataInterChange_t* decode_datainterchange_file(int input_selector, char *file_path);
 // Encoders
 static char* encode_datainterchange_2buffer(DataInterChange_t* datainterchange, int output_selector);
-static char* encode_datainterchange_2file(DataInterChange_t* datainterchange, int output_selector, char* filename);
+static int encode_datainterchange_2file(DataInterChange_t* datainterchange, int output_selector, char* filename);
 
 extern char* decode_tap0311_datainterchange_file2file(int input_selector, int output_selector, char *file_path, char *newfileName);
 extern char* decode_tap0311_datainterchange_buffer2file(int input_selector, int output_selector, char *in_buffer, char *newFileName);
 extern char* decode_tap0311_datainterchange_buffer2buffer(int input_selector, int output_selector, char *in_buffer, char *out_buffer);
+
+static int write_out(const void *buffer, size_t size, void *key) {
+    FILE *fp = (FILE *)key;
+    return (fwrite(buffer, 1, size, fp) == size) ? 0 : -1;
+}
 
 static const syntax_selector encodings[] = {
     [BER]   = {"BER", ATS_BER},
@@ -44,7 +49,9 @@ int main(int argc, char** argv)
 static void tap0311_menu(){
 
     DataInterChange_t *ree = decode_datainterchange_file(0, "reee");
-    char* encoded_xml = encode_datainterchange_2buffer(ree, 2);
+    // char* encoded_xml = encode_datainterchange_2buffer(ree, 2);
+    int encoded_bytes = encode_datainterchange_2file(ree, 2, "somepath/result.xml");
+
     // decode_tap0311_datainterchange(0,2,"E:\\repos\\tap3magic\\sample-data\\tap3-sample-DataInterChange-3_11.ber");
     // decode_tap0311(0,1,"ree");
 }
@@ -120,8 +127,25 @@ static char* encode_datainterchange_2buffer(DataInterChange_t* datainterchange, 
     return ree;
 }
 
-static char* encode_datainterchange_2file(DataInterChange_t* datainterchange, int output_selector, char* filename){
+/* Returns number of written bytes. -1 if failed*/
+static int encode_datainterchange_2file(DataInterChange_t* datainterchange, int output_selector, char* filename){
+    asn_TYPE_descriptor_t *pduType = &asn_DEF_DataInterChange;
+
+    enum asn_transfer_syntax osyntax = encodings[output_selector].syntax;
+    // FILE *fp = stdout;  // To write to terminal directly.
+    FILE *fp;
+    fp = fopen("E:\\repos\\tap3magic\\build\\debug-readers\\resultHere.xml", "w+");
+
+    if(!fp) {
+        perror("reeeee");
+        exit(1);
+    }
+
+    asn_enc_rval_t encode_res = asn_encode(NULL, osyntax, pduType, datainterchange, write_out, fp);
     
+    fclose(fp);
+
+    return encode_res.encoded;
 }
 
 extern char* decode_tap0311_datainterchange_file2file(int input_selector, int output_selector, char *file_path, char *newfileName){
