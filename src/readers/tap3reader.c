@@ -27,8 +27,8 @@ static int encode_datainterchange_2file(DataInterChange_t* datainterchange, int 
 
 // Library exposed functions
 extern int decode_tap0311_datainterchange_file2file(int input_selector, int output_selector, char *file_path, char *newfileName);
-extern int decode_tap0311_datainterchange_buffer2file(int input_selector, int output_selector, char *in_buffer, char *newFileName);
-extern char* decode_tap0311_datainterchange_buffer2buffer(int input_selector, int output_selector, char *in_buffer, char *out_buffer);
+extern int decode_tap0311_datainterchange_buffer2file(int input_selector, int output_selector, char *in_buffer, unsigned long long in_buffer_size, char *newFileName);
+extern char* decode_tap0311_datainterchange_buffer2buffer(int input_selector, int output_selector, char *in_buffer, unsigned long long in_buffer_size,char *out_buffer);
 
 static int write_out(const void *buffer, size_t size, void *key) {
     FILE *fp = (FILE *)key;
@@ -68,7 +68,8 @@ static void tap0311_menu(){
     // decode_tap0311(0,1,"encoded_content");
 }
 
-/* Returns number of written bytes. -1 if failed*/
+/* Returns number of written bytes. -1 if failed */
+/* Only supposed to be used in testing */
 static size_t read_file_into_buffer(char *file_path, uint8_t** buffer){
     FILE *fp; /* Input file handler */
     size_t size; /* Number of bytes read */
@@ -224,31 +225,40 @@ extern int decode_tap0311_datainterchange_file2file(int input_encoding, int outp
     return encode_res;
 }
 
-/* This function takes an input */
-extern int decode_tap0311_datainterchange_buffer2file(int input_selector, int output_selector, char *in_buffer, char *newFileName){
+/* This function takes an buffer input and size and out puts a new file with new encoding */
+extern int decode_tap0311_datainterchange_buffer2file(int input_encoding, int output_encoding, char *in_buffer, unsigned long long in_buffer_size, char *newFileName){
     uint8_t **buffer;
     *buffer = 0;
-    size_t size = read_file_into_buffer("char *file_path", buffer);
-    DataInterChange_t *decoded_content = decode_datainterchange_buffer(0, *buffer, size);
+    size_t size = (size_t)in_buffer_size;
+
+    DataInterChange_t *decoded_content = decode_datainterchange_buffer(input_encoding, *buffer, size);
     
-    int encode_res = encode_datainterchange_2file(decoded_content, output_selector, newfileName);
-    free(*buffer);
+    int encode_res = encode_datainterchange_2file(decoded_content, output_encoding, newfileName);
+    // free(*buffer);
+    free(decoded_content);
     return encode_res;
 }
 
-extern char* decode_tap0311_datainterchange_buffer2buffer(int input_selector, int output_selector, char *in_buffer, char *out_buffer){
+
+extern char* decode_tap0311_datainterchange_buffer2buffer(int input_encoding, int output_encoding, char *in_buffer, unsigned long long in_buffer_size, char *out_buffer){
     uint8_t **buffer;
     *buffer = 0;
-    size_t size = read_file_into_buffer("char *file_path", buffer);
-    DataInterChange_t *decoded_content = decode_datainterchange_buffer(0, *buffer, size);
+    size_t size = (size_t)in_buffer_size;
     
-    char *encoded_content = encode_datainterchange_2buffer(decoded_content,output_selector);
-    free(*buffer);
-    return encoded_content; // possible memory leak. Return void * instead? Such that the we can create a function that frees memory at pointer.
+    DataInterChange_t *decoded_content = decode_datainterchange_buffer(input_encoding, *buffer, size);
+    
+    char *encoded_content = encode_datainterchange_2buffer(decoded_content,output_encoding);
+    // free(*buffer);
+    free(decoded_content);
+    return encoded_content; // possible memory leak. Return void* instead? Such that the we can create a function that frees memory at pointer. (HANDL)
 }
 
 
-extern char* decode_tap0311_datainterchange_file2buffer(int input_selector, int output_selector, char *file_path)
+extern char* decode_tap0311_datainterchange_file2buffer(int input_encoding, int output_encoding, char *file_path)
 {
+    DataInterChange_t *decoded_content = decode_datainterchange_file(input_encoding, file_path);
 
+    char *encoded_content = encode_datainterchange_2buffer(decoded_content,output_encoding);
+    free(decoded_content);
+    return encoded_content; // possible memory leak. Return void* instead? Such that the we can create a function that frees memory at pointer. (HANDL)
 }
