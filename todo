@@ -8,7 +8,8 @@
 * Generate TAP311 sources lib from template
     * https://crascit.com/2017/04/18/generated-sources-in-cmake-builds/
     * https://cmake.org/cmake/help/latest/prop_sf/GENERATED.html
-    * m4 vs jinja vs mako
+    * m4 vs jinja vs mako vs cog
+      cog might be best due to be able to make checksum
 * Write tests
 * Test with qt console project.
 
