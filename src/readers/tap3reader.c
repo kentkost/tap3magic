@@ -226,14 +226,14 @@ extern int decode_tap0311_datainterchange_file2file(int input_encoding, int outp
 }
 
 /* This function takes an buffer input and size and out puts a new file with new encoding */
-extern int decode_tap0311_datainterchange_buffer2file(int input_encoding, int output_encoding, char *in_buffer, unsigned long long in_buffer_size, char *newFileName){
+extern int decode_tap0311_datainterchange_buffer2file(int input_encoding, int output_encoding, char *in_buffer, unsigned long long in_buffer_size, char *new_filename){
     uint8_t **buffer;
     *buffer = 0;
     size_t size = (size_t)in_buffer_size;
 
     DataInterChange_t *decoded_content = decode_datainterchange_buffer(input_encoding, *buffer, size);
     
-    int encode_res = encode_datainterchange_2file(decoded_content, output_encoding, newfileName);
+    int encode_res = encode_datainterchange_2file(decoded_content, output_encoding, new_filename);
     // free(*buffer);
     free(decoded_content);
     return encode_res;
