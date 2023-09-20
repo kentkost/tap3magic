@@ -1,0 +1,12 @@
+* Finish function for decoding buffer to DataInterChange
+* Finish flow for the 3 small functions that take in a tap3 file/buffer and outputs new codec
+* Create function for outputting junk data
+* Create .dll
+* Create wrapper in C#
+* Test Wrapper
+* Generate TAP311 sources lib from template
+    * https://crascit.com/2017/04/18/generated-sources-in-cmake-builds/
+    * https://cmake.org/cmake/help/latest/prop_sf/GENERATED.html
+    * m4 vs jinja vs mako
+* Write tests
+* Test with qt console project.
