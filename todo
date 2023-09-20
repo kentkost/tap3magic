@@ -10,3 +10,13 @@
     * m4 vs jinja vs mako
 * Write tests
 * Test with qt console project.
+
+
+* New structure
+    - src
+        -TAP0311
+            *.c
+            - pdu
+        -TAP0312
+        etc.
+  
