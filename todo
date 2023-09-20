@@ -3,6 +3,7 @@
 * Create function for outputting junk data
 * Create .dll
 * Create wrapper in C#
+    * SWIG
 * Test Wrapper
 * Generate TAP311 sources lib from template
     * https://crascit.com/2017/04/18/generated-sources-in-cmake-builds/
