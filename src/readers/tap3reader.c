@@ -29,6 +29,7 @@ static int encode_datainterchange_2file(DataInterChange_t* datainterchange, int 
 extern int decode_tap0311_datainterchange_file2file(int input_selector, int output_selector, char *file_path, char *newfileName);
 extern int decode_tap0311_datainterchange_buffer2file(int input_selector, int output_selector, char *in_buffer, unsigned long long in_buffer_size, char *newFileName);
 extern char* decode_tap0311_datainterchange_buffer2buffer(int input_selector, int output_selector, char *in_buffer, unsigned long long in_buffer_size,char *out_buffer);
+extern char* decode_tap0311_datainterchange_file2buffer(int input_encoding, int output_encoding, char *file_path);
 
 static int write_out(const void *buffer, size_t size, void *key) {
     FILE *fp = (FILE *)key;
@@ -51,34 +52,34 @@ int main(int argc, char** argv)
     return 0;
 }
 
-static void tap0311_menu(){
+static void tap0311_menu()
+{
+    int in_encoding =0; // BER/DER
+    int out_encoding = 2; // XER
+    char *in_file_path = "E:\\repos\\tap3magic\\build\\debug-readers\\tap3-sample-DataInterChange-3_11.ber";
+    char *out_file_path = "E:\\repos\\tap3magic\\build\\debug-readers\\new_results.xml";
     
-    /// Decocding when given a byte array.
     uint8_t **buffer;
     *buffer = 0;
-    size_t size = read_file_into_buffer("char *file_path", buffer);
-    DataInterChange_t *encoded_content = decode_datainterchange_buffer(0, *buffer, size);
-    
-    /// Decoding when given a file first.
-    // DataInterChange_t *encoded_content = decode_datainterchange_file(0, "encoded_contente");
-    // char* encoded_xml = encode_datainterchange_2buffer(encoded_content, 2);
-    // int encoded_bytes = encode_datainterchange_2file(encoded_content, 2, "somepath/result.xml");
-
-    // decode_tap0311_datainterchange(0,2,"E:\\repos\\tap3magic\\sample-data\\tap3-sample-DataInterChange-3_11.ber");
-    // decode_tap0311(0,1,"encoded_content");
+    size_t bytes_to_encode = read_file_into_buffer(in_file_path, buffer);
+    unsigned long long size =(unsigned long long)bytes_to_encode;
+    // decode_tap0311_datainterchange_file2file(in_encoding, out_encoding,in_file_path, out_file_path); // ✅
+    decode_tap0311_datainterchange_buffer2file(in_encoding,out_encoding, *buffer, size, out_file_path);
+    // decode_tap0311_datainterchange_buffer2buffer(int input_selector, int output_selector, char *in_buffer, unsigned long long in_buffer_size,char *out_buffer);
+    // decode_tap0311_datainterchange_file2buffer(int input_encoding, int output_encoding, char *file_path)
 }
 
 /* Returns number of written bytes. -1 if failed */
-/* Only supposed to be used in testing */
+/* Only used in testing when a buffer is needed */
 static size_t read_file_into_buffer(char *file_path, uint8_t** buffer){
     FILE *fp; /* Input file handler */
     size_t size; /* Number of bytes read */
     
-    char *path="E:\\repos\\tap3magic\\build\\debug-readers\\tap3-sample-DataInterChange-3_11.ber"; /* Input file name */
-    // char *path = file_path;
+    char *path = file_path;
 
     /* Open input file as read-only binary */
     fp = fopen(path, "rb");
+
     if(!fp) {
         perror(path);
         exit(1);
@@ -113,8 +114,7 @@ static DataInterChange_t* decode_datainterchange_file(int input_selector, char *
     FILE *fp; /* Input file handler */
     size_t size; /* Number of bytes read */
     
-    char *path="E:\\repos\\tap3magic\\build\\debug-readers\\tap3-sample-DataInterChange-3_11.ber"; /* Input file name */
-    // char *path = file_path;
+    char *path = file_path;
 
     /* Open input file as read-only binary */
     fp = fopen(path, "rb");
@@ -127,7 +127,7 @@ static DataInterChange_t* decode_datainterchange_file(int input_selector, char *
     int buffer_size = ftell(fp);
     rewind(fp);
     
-    uint8_t *buffer;
+    uint8_t *buffer = 0;
     buffer = (uint8_t *)REALLOC(buffer, buffer_size);
     size = fread(buffer, 1, buffer_size, fp);
 
@@ -164,7 +164,7 @@ static DataInterChange_t* decode_datainterchange_buffer(int input_selector, uint
     asn_codec_ctx_t *opt_codec_ctx = 0;
     enum asn_transfer_syntax isyntax = input_sel.syntax;
     asn_TYPE_descriptor_t *pduType = &asn_DEF_DataInterChange;
-    
+
     /* Decode the input buffer as circle type */
     decode_result = asn_decode(opt_codec_ctx, isyntax, pduType, (void **)&datainterchange, buffer, size); //using asn_application.h
 
@@ -200,7 +200,7 @@ static int encode_datainterchange_2file(DataInterChange_t* datainterchange, int 
     enum asn_transfer_syntax osyntax = encodings[output_selector].syntax;
     // FILE *fp = stdout;  // To write to terminal directly.
     FILE *fp;
-    fp = fopen("E:\\repos\\tap3magic\\build\\debug-readers\\resultHere.xml", "w+");
+    fp = fopen(filename, "w+");
 
     if(!fp) {
         perror("Couldn't read file.");
@@ -227,11 +227,9 @@ extern int decode_tap0311_datainterchange_file2file(int input_encoding, int outp
 
 /* This function takes an buffer input and size and out puts a new file with new encoding */
 extern int decode_tap0311_datainterchange_buffer2file(int input_encoding, int output_encoding, char *in_buffer, unsigned long long in_buffer_size, char *new_filename){
-    uint8_t **buffer;
-    *buffer = 0;
     size_t size = (size_t)in_buffer_size;
 
-    DataInterChange_t *decoded_content = decode_datainterchange_buffer(input_encoding, *buffer, size);
+    DataInterChange_t *decoded_content = decode_datainterchange_buffer(input_encoding, in_buffer, size);
     
     int encode_res = encode_datainterchange_2file(decoded_content, output_encoding, new_filename);
     // free(*buffer);
