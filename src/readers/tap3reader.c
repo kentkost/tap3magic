@@ -47,6 +47,7 @@ static const syntax_selector encodings[] = {
     [UPER]  = {"UPER", ATS_UNALIGNED_BASIC_PER},
 };
 
+#ifdef DEBUGGER_ATTACHED
 int main(int argc, char** argv)
 {
     tap0311_menu();
@@ -55,20 +56,24 @@ int main(int argc, char** argv)
 
 static void tap0311_menu()
 {
-    int in_encoding =0; // BER/DER
-    int out_encoding = 2; // XER
-    char *in_file_path = "E:\\repos\\tap3magic\\build\\debug-readers\\tap3-sample-DataInterChange-3_11.ber";
-    char *out_file_path = "E:\\repos\\tap3magic\\build\\debug-readers\\new_results.xml";
+    /* Prepared variables for testing functions */
+    // int in_encoding =0; // BER/DER
+    // int out_encoding = 2; // XER
+    // char *in_file_path = "E:\\repos\\tap3magic\\build\\debug-readers\\tap3-sample-DataInterChange-3_11.ber";
+    // char *out_file_path = "E:\\repos\\tap3magic\\build\\debug-readers\\new_results.xml";
     
-    uint8_t **buffer;
-    *buffer = 0;
-    size_t bytes_to_encode = read_file_into_buffer(in_file_path, buffer);
-    unsigned long long size =(unsigned long long)bytes_to_encode;
+    // uint8_t **buffer;
+    // *buffer = 0;
+    // size_t bytes_to_encode = read_file_into_buffer(in_file_path, buffer);
+    // unsigned long long size =(unsigned long long)bytes_to_encode;
+
+    /* Functions to test */
     // decode_tap0311_datainterchange_file2file(in_encoding, out_encoding,in_file_path, out_file_path); // ✅
     // decode_tap0311_datainterchange_buffer2file(in_encoding,out_encoding, *buffer, size, out_file_path); // ✅
     // char *out_str = decode_tap0311_datainterchange_buffer2buffer(in_encoding,out_encoding, *buffer, size); // ✅
     // char *out_str = decode_tap0311_datainterchange_file2buffer(in_encoding, out_encoding, in_file_path); // ✅
 }
+#endif
 
 /* Returns number of written bytes. -1 if failed */
 /* Only used in testing when a buffer is needed */
@@ -186,10 +191,6 @@ static char* encode_datainterchange_2buffer(DataInterChange_t* datainterchange, 
     asn_encode_to_new_buffer_result_t res = asn_encode_to_new_buffer(NULL, osyntax, pduType, datainterchange);
     char *encoded_content = calloc(res.result.encoded, sizeof(char));
     memcpy(encoded_content, res.buffer, res.result.encoded);
-
-#ifdef DEBUGGER_ATTACHED
-    puts(encoded_content);
-#endif
 
     return encoded_content;
 }

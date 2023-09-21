@@ -5,6 +5,15 @@ project (tap3reader)
 add_definitions("-DPDU=DataInterChange")
 add_definitions("-DJUNKTEST")
 
+# The root CMakeLists.txt has an operating system check. But I don't really care for that right now.
+set(CMAKE_DEBUG_POSTFIX "_d")
+set(CMAKE_IMPORT_LIBRARY_PREFIX "")
+set(CMAKE_IMPORT_LIBRARY_SUFFIX ".lib")
+set(CMAKE_SHARED_LIBRARY_PREFIX "")
+set(CMAKE_SHARED_LIBRARY_SUFFIX ".dll")
+set(CMAKE_FIND_LIBRARY_SUFFIXES ".dll")
+set(CMAKE_EXTRA_SHARED_LIBRARY_SUFFIXES ".dll")
+
 
 if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
     add_definitions("-DDEBUGGER_ATTACHED")
