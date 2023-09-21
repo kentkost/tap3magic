@@ -28,8 +28,9 @@ static int encode_datainterchange_2file(DataInterChange_t* datainterchange, int 
 // Library exposed functions
 extern int decode_tap0311_datainterchange_file2file(int input_selector, int output_selector, char *file_path, char *newfileName);
 extern int decode_tap0311_datainterchange_buffer2file(int input_selector, int output_selector, char *in_buffer, unsigned long long in_buffer_size, char *newFileName);
-extern char* decode_tap0311_datainterchange_buffer2buffer(int input_selector, int output_selector, char *in_buffer, unsigned long long in_buffer_size,char *out_buffer);
+extern char* decode_tap0311_datainterchange_buffer2buffer(int input_selector, int output_selector, char *in_buffer, unsigned long long in_buffer_size);
 extern char* decode_tap0311_datainterchange_file2buffer(int input_encoding, int output_encoding, char *file_path);
+extern int DllTest(int input);
 
 static int write_out(const void *buffer, size_t size, void *key) {
     FILE *fp = (FILE *)key;
@@ -64,9 +65,9 @@ static void tap0311_menu()
     size_t bytes_to_encode = read_file_into_buffer(in_file_path, buffer);
     unsigned long long size =(unsigned long long)bytes_to_encode;
     // decode_tap0311_datainterchange_file2file(in_encoding, out_encoding,in_file_path, out_file_path); // ✅
-    decode_tap0311_datainterchange_buffer2file(in_encoding,out_encoding, *buffer, size, out_file_path);
-    // decode_tap0311_datainterchange_buffer2buffer(int input_selector, int output_selector, char *in_buffer, unsigned long long in_buffer_size,char *out_buffer);
-    // decode_tap0311_datainterchange_file2buffer(int input_encoding, int output_encoding, char *file_path)
+    // decode_tap0311_datainterchange_buffer2file(in_encoding,out_encoding, *buffer, size, out_file_path); // ✅
+    // char *out_str = decode_tap0311_datainterchange_buffer2buffer(in_encoding,out_encoding, *buffer, size); // ✅
+    // char *out_str = decode_tap0311_datainterchange_file2buffer(in_encoding, out_encoding, in_file_path); // ✅
 }
 
 /* Returns number of written bytes. -1 if failed */
@@ -238,12 +239,10 @@ extern int decode_tap0311_datainterchange_buffer2file(int input_encoding, int ou
 }
 
 
-extern char* decode_tap0311_datainterchange_buffer2buffer(int input_encoding, int output_encoding, char *in_buffer, unsigned long long in_buffer_size, char *out_buffer){
-    uint8_t **buffer;
-    *buffer = 0;
+extern char* decode_tap0311_datainterchange_buffer2buffer(int input_encoding, int output_encoding, char *in_buffer, unsigned long long in_buffer_size){
     size_t size = (size_t)in_buffer_size;
     
-    DataInterChange_t *decoded_content = decode_datainterchange_buffer(input_encoding, *buffer, size);
+    DataInterChange_t *decoded_content = decode_datainterchange_buffer(input_encoding, in_buffer, size);
     
     char *encoded_content = encode_datainterchange_2buffer(decoded_content,output_encoding);
     // free(*buffer);
@@ -259,4 +258,12 @@ extern char* decode_tap0311_datainterchange_file2buffer(int input_encoding, int 
     char *encoded_content = encode_datainterchange_2buffer(decoded_content,output_encoding);
     free(decoded_content);
     return encoded_content; // possible memory leak. Return void* instead? Such that the we can create a function that frees memory at pointer. (HANDL)
+}
+
+/* This is just a test function to see if dll is working */
+extern int DllTest(int input)
+{
+    fprintf(stdout,"hello world");
+    printf("goodbye satan");
+    return input+42;
 }
