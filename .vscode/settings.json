@@ -20,6 +20,7 @@
         "datainterchange.h": "c",
         "asn_system.h": "c",
         "asn_codecs.h": "c",
-        "asn_config.h": "c"
+        "asn_config.h": "c",
+        "string.h": "c"
     }
 }

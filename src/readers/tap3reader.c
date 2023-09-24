@@ -25,13 +25,6 @@ static size_t read_file_into_buffer(char *file_path, uint8_t** buffer);
 static char* encode_datainterchange_2buffer(DataInterChange_t* datainterchange, int output_selector);
 static int encode_datainterchange_2file(DataInterChange_t* datainterchange, int output_selector, char* filename);
 
-// Library exposed functions
-extern int decode_tap0311_datainterchange_file2file(int input_selector, int output_selector, char *file_path, char *newfileName);
-extern int decode_tap0311_datainterchange_buffer2file(int input_selector, int output_selector, char *in_buffer, unsigned long long in_buffer_size, char *newFileName);
-extern char* decode_tap0311_datainterchange_buffer2buffer(int input_selector, int output_selector, char *in_buffer, unsigned long long in_buffer_size);
-extern char* decode_tap0311_datainterchange_file2buffer(int input_encoding, int output_encoding, char *file_path);
-extern int DllTest(int input);
-
 static int write_out(const void *buffer, size_t size, void *key) {
     FILE *fp = (FILE *)key;
     return (fwrite(buffer, 1, size, fp) == size) ? 0 : -1;
@@ -264,7 +257,22 @@ extern char* decode_tap0311_datainterchange_file2buffer(int input_encoding, int 
 /* This is just a test function to see if dll is working */
 extern int DllTest(int input)
 {
-    fprintf(stdout,"hello world");
+    // fprintf(stdout,"hello world");
     printf("goodbye satan");
     return input+42;
 }
+
+extern int hello()
+{
+    printf ("Hello World!\n");
+    perror("error test");
+    return 11;
+}  
+
+
+extern int hello()
+{
+    printf ("Hello World!\n");
+    exit(1);
+    return 11;
+}  
