@@ -9,7 +9,7 @@ extern int decode_tap0311_datainterchange_buffer2file(int input_selector, int ou
 extern char* decode_tap0311_datainterchange_buffer2buffer(int input_selector, int output_selector, char *in_buffer, unsigned long long in_buffer_size);
 extern char* decode_tap0311_datainterchange_file2buffer(int input_encoding, int output_encoding, char *file_path);
 extern int DllTest(int input);
-extern int hello();
+extern int perror_test();
 extern int exit_test1();
 extern int exit_text0();
 

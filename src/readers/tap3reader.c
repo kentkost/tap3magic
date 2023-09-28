@@ -40,20 +40,20 @@ static const syntax_selector encodings[] = {
     [UPER]  = {"UPER", ATS_UNALIGNED_BASIC_PER},
 };
 
-#ifdef DEBUGGER_ATTACHED
 int main(int argc, char** argv)
 {
-    tap0311_menu();
+    printf("Started");
+    // tap0311_menu();
     return 0;
 }
 
 static void tap0311_menu()
 {
     /* Prepared variables for testing functions */
-    // int in_encoding =0; // BER/DER
-    // int out_encoding = 2; // XER
-    // char *in_file_path = "E:\\repos\\tap3magic\\build\\debug-readers\\tap3-sample-DataInterChange-3_11.ber";
-    // char *out_file_path = "E:\\repos\\tap3magic\\build\\debug-readers\\new_results.xml";
+    int in_encoding =0; // BER/DER
+    int out_encoding = 2; // XER
+    char *in_file_path = "E:\\repos\\tap3magic\\build\\debug-readers\\tap3-sample-DataInterChange-3_11.ber";
+    char *out_file_path = "E:\\repos\\tap3magic\\build\\debug-readers\\new_results.xml";
     
     // uint8_t **buffer;
     // *buffer = 0;
@@ -61,12 +61,11 @@ static void tap0311_menu()
     // unsigned long long size =(unsigned long long)bytes_to_encode;
 
     /* Functions to test */
-    // decode_tap0311_datainterchange_file2file(in_encoding, out_encoding,in_file_path, out_file_path); // ✅
+    decode_tap0311_datainterchange_file2file(in_encoding, out_encoding,in_file_path, out_file_path); // ✅
     // decode_tap0311_datainterchange_buffer2file(in_encoding,out_encoding, *buffer, size, out_file_path); // ✅
     // char *out_str = decode_tap0311_datainterchange_buffer2buffer(in_encoding,out_encoding, *buffer, size); // ✅
     // char *out_str = decode_tap0311_datainterchange_file2buffer(in_encoding, out_encoding, in_file_path); // ✅
 }
-#endif
 
 /* Returns number of written bytes. -1 if failed */
 /* Only used in testing when a buffer is needed */
@@ -214,8 +213,12 @@ static int encode_datainterchange_2file(DataInterChange_t* datainterchange, int 
 
 /* This function takes a path to a file and creates a new file with the new encoding */
 extern int decode_tap0311_datainterchange_file2file(int input_encoding, int output_encoding, char *file_path, char *newfileName){
+    printf("Reading file %s\n", file_path);
     DataInterChange_t *decoded_content = decode_datainterchange_file(input_encoding, file_path);
+    printf("Loaded file %s\n", file_path);
+    printf("Encoding to new file %s\n", newfileName);
     int encode_res = encode_datainterchange_2file(decoded_content, output_encoding, newfileName);
+    printf("Encoded to new file %s\n", newfileName);
     free(decoded_content);
     return encode_res;
 }
@@ -262,7 +265,7 @@ extern int DllTest(int input)
     return input+42;
 }
 
-extern int hello()
+extern int perror_test()
 {
     printf ("Hello World!\n");
     perror("error test");
@@ -270,9 +273,16 @@ extern int hello()
 }  
 
 
-extern int hello()
+extern int exit_test1()
 {
-    printf ("Hello World!\n");
+    printf ("exit 1!\n");
     exit(1);
+    return 11;
+}  
+
+extern int exit_text0()
+{
+    printf ("exit 0!\n");
+    exit(0);
     return 11;
 }  

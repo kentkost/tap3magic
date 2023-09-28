@@ -17,6 +17,7 @@ set(CMAKE_EXTRA_SHARED_LIBRARY_SUFFIXES ".dll")
 
 if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
     add_definitions("-DDEBUGGER_ATTACHED")
+    MESSAGE("DEBUGGER ATTACHED")
 endif()
 
 include("TAP0311/_sources.cmake")
@@ -32,8 +33,10 @@ add_executable(${PROJECT_NAME})
 # When I want to debug I have a main file for testing quick functions. Temporary until Testing folders are up and running.
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
     SET(TAP0311MAIN TestMain)
+    SET(TAP0311Dll TestDll)
     # add_executable(${TAP0311MAIN})
-    add_library(${TAP0311MAIN} SHARED)
+    add_library(${TAP0311Dll} SHARED)
+    add_executable(${TAP0311MAIN})
 
     target_sources(
         ${TAP0311MAIN}
@@ -49,7 +52,23 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
             # where the library itself will look for its internal headers
             # so I don't have big paths and less clutter
             ${CMAKE_CURRENT_SOURCE_DIR}
-)
+    )
+    
+    target_sources(
+        ${TAP0311Dll}
+        PUBLIC
+            ${CMAKE_CURRENT_SOURCE_DIR}/tap3reader.c
+    )
+
+    # set_target_properties(${TAP0311MAIN} PROPERTIES OUTPUT_NAME "main")
+
+    target_link_libraries(${TAP0311Dll} ${LIBRARY_NAME})
+    target_include_directories(${TAP0311Dll}
+        PUBLIC
+            # where the library itself will look for its internal headers
+            # so I don't have big paths and less clutter
+            ${CMAKE_CURRENT_SOURCE_DIR}
+    )
 
 endif()
 
