@@ -23,6 +23,7 @@ static size_t read_file_into_buffer(char *file_path, uint8_t** buffer);
 
 // Encoders
 static char* encode_datainterchange_2buffer(DataInterChange_t* datainterchange, int output_selector);
+static int encode_datainterchange_2buffer_new(DataInterChange_t* datainterchange, int output_selector, char** out_buffer);
 static int encode_datainterchange_2file(DataInterChange_t* datainterchange, int output_selector, char* filename);
 
 static int write_out(const void *buffer, size_t size, void *key) {
@@ -43,7 +44,7 @@ static const syntax_selector encodings[] = {
 int main(int argc, char** argv)
 {
     printf("Started");
-    // tap0311_menu();
+    tap0311_menu();
     return 0;
 }
 
@@ -55,15 +56,17 @@ static void tap0311_menu()
     char *in_file_path = "E:\\repos\\tap3magic\\build\\debug-readers\\tap3-sample-DataInterChange-3_11.ber";
     char *out_file_path = "E:\\repos\\tap3magic\\build\\debug-readers\\new_results.xml";
     
-    // uint8_t **buffer;
-    // *buffer = 0;
-    // size_t bytes_to_encode = read_file_into_buffer(in_file_path, buffer);
-    // unsigned long long size =(unsigned long long)bytes_to_encode;
+    char* out_buffer = NULL;
+
+    uint8_t *buffer = NULL;
+    size_t bytes_to_encode = read_file_into_buffer(in_file_path, &buffer);
+    unsigned long long size =(unsigned long long)bytes_to_encode;
 
     /* Functions to test */
-    decode_tap0311_datainterchange_file2file(in_encoding, out_encoding,in_file_path, out_file_path); // ✅
+    // decode_tap0311_datainterchange_file2file(in_encoding, out_encoding,in_file_path, out_file_path); // ✅
     // decode_tap0311_datainterchange_buffer2file(in_encoding,out_encoding, *buffer, size, out_file_path); // ✅
     // char *out_str = decode_tap0311_datainterchange_buffer2buffer(in_encoding,out_encoding, *buffer, size); // ✅
+    int encoded_bytes = decode_tap0311_datainterchange_buffer2buffer_new(in_encoding,out_encoding, buffer, size, &out_buffer);
     // char *out_str = decode_tap0311_datainterchange_file2buffer(in_encoding, out_encoding, in_file_path); // ✅
 }
 
@@ -99,7 +102,6 @@ static size_t read_file_into_buffer(char *file_path, uint8_t** buffer){
     }
 
     *buffer = buf;
-
 
     return size;
 }
@@ -187,6 +189,18 @@ static char* encode_datainterchange_2buffer(DataInterChange_t* datainterchange, 
     return encoded_content;
 }
 
+static int encode_datainterchange_2buffer_new(DataInterChange_t* datainterchange, int output_selector, char** out_buffer){
+    asn_TYPE_descriptor_t *pduType = &asn_DEF_DataInterChange;
+
+    enum asn_transfer_syntax osyntax = encodings[output_selector].syntax;
+
+    asn_encode_to_new_buffer_result_t res = asn_encode_to_new_buffer(NULL, osyntax, pduType, datainterchange);
+    
+    *out_buffer = res.buffer;
+
+    return res.result.encoded;
+}
+
 /* Returns number of written bytes. -1 if failed*/
 static int encode_datainterchange_2file(DataInterChange_t* datainterchange, int output_selector, char* filename){
     asn_TYPE_descriptor_t *pduType = &asn_DEF_DataInterChange;
@@ -255,6 +269,17 @@ extern char* decode_tap0311_datainterchange_file2buffer(int input_encoding, int 
     char *encoded_content = encode_datainterchange_2buffer(decoded_content,output_encoding);
     free(decoded_content);
     return encoded_content; // possible memory leak. Return void* instead? Such that the we can create a function that frees memory at pointer. (HANDL)
+}
+
+
+extern char* decode_tap0311_datainterchange_buffer2buffer_new(int input_encoding, int output_encoding, char *in_buffer, unsigned long long in_buffer_size, char** out_buffer){
+    size_t size = (size_t)in_buffer_size;
+    
+    DataInterChange_t *decoded_content = decode_datainterchange_buffer(input_encoding, in_buffer, size);
+    
+    int encoded_bytes = encode_datainterchange_2buffer_new(decoded_content,output_encoding, out_buffer);
+    // free(*buffer);
+    return encoded_bytes;
 }
 
 /* This is just a test function to see if dll is working */
