@@ -6,9 +6,8 @@ enum version{TAP0301=1, TAP0302=2,TAP0303=3,TAP0304=4,TAP0309=9,TAP0310=10,TAP03
 
 extern int decode_tap0311_datainterchange_file2file(int input_encoding, int output_encoding, char *file_path, char *newfileName);
 extern int decode_tap0311_datainterchange_buffer2file(int input_encoding, int output_encoding, char *in_buffer, unsigned long long in_buffer_size, char *newFileName);
-extern char* decode_tap0311_datainterchange_buffer2buffer(int input_encoding, int output_encoding, char *in_buffer, unsigned long long in_buffer_size);
-extern char* decode_tap0311_datainterchange_buffer2buffer_new(int input_encoding, int output_encoding, char *in_buffer, unsigned long long in_buffer_size, char** out_buffer);
-extern char* decode_tap0311_datainterchange_file2buffer(int input_encoding, int output_encoding, char *file_path);
+extern int decode_tap0311_datainterchange_buffer2buffer(int input_encoding, int output_encoding, char *in_buffer, unsigned long long in_buffer_size, char** out_buffer);
+extern int decode_tap0311_datainterchange_file2buffer(int input_encoding, int output_encoding, char *file_path, char** out_buffer);
 extern int DllTest(int input);
 extern int perror_test();
 extern int exit_test1();

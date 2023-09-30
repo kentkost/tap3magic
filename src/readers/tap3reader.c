@@ -22,8 +22,7 @@ static DataInterChange_t* decode_datainterchange_file(int input_selector, char *
 static size_t read_file_into_buffer(char *file_path, uint8_t** buffer);
 
 // Encoders
-static char* encode_datainterchange_2buffer(DataInterChange_t* datainterchange, int output_selector);
-static int encode_datainterchange_2buffer_new(DataInterChange_t* datainterchange, int output_selector, char** out_buffer);
+static int encode_datainterchange_2buffer(DataInterChange_t* datainterchange, int output_selector, char** out_buffer);
 static int encode_datainterchange_2file(DataInterChange_t* datainterchange, int output_selector, char* filename);
 
 static int write_out(const void *buffer, size_t size, void *key) {
@@ -65,9 +64,8 @@ static void tap0311_menu()
     /* Functions to test */
     // decode_tap0311_datainterchange_file2file(in_encoding, out_encoding,in_file_path, out_file_path); // ✅
     // decode_tap0311_datainterchange_buffer2file(in_encoding,out_encoding, *buffer, size, out_file_path); // ✅
-    // char *out_str = decode_tap0311_datainterchange_buffer2buffer(in_encoding,out_encoding, *buffer, size); // ✅
-    int encoded_bytes = decode_tap0311_datainterchange_buffer2buffer_new(in_encoding,out_encoding, buffer, size, &out_buffer);
-    // char *out_str = decode_tap0311_datainterchange_file2buffer(in_encoding, out_encoding, in_file_path); // ✅
+    // int encoded_bytes = decode_tap0311_datainterchange_buffer2buffer(in_encoding,out_encoding, *buffer, size, &out_buffer);); // ✅
+    int encoded_bytes = decode_tap0311_datainterchange_file2buffer(in_encoding, out_encoding, in_file_path, &out_buffer); // ✅
 }
 
 /* Returns number of written bytes. -1 if failed */
@@ -176,20 +174,7 @@ static DataInterChange_t* decode_datainterchange_buffer(int input_selector, uint
     return datainterchange;
 }
 
-static char* encode_datainterchange_2buffer(DataInterChange_t* datainterchange, int output_selector){
-
-    asn_TYPE_descriptor_t *pduType = &asn_DEF_DataInterChange;
-
-    enum asn_transfer_syntax osyntax = encodings[output_selector].syntax;
-
-    asn_encode_to_new_buffer_result_t res = asn_encode_to_new_buffer(NULL, osyntax, pduType, datainterchange);
-    char *encoded_content = calloc(res.result.encoded, sizeof(char));
-    memcpy(encoded_content, res.buffer, res.result.encoded);
-
-    return encoded_content;
-}
-
-static int encode_datainterchange_2buffer_new(DataInterChange_t* datainterchange, int output_selector, char** out_buffer){
+static int encode_datainterchange_2buffer(DataInterChange_t* datainterchange, int output_selector, char** out_buffer){
     asn_TYPE_descriptor_t *pduType = &asn_DEF_DataInterChange;
 
     enum asn_transfer_syntax osyntax = encodings[output_selector].syntax;
@@ -250,35 +235,24 @@ extern int decode_tap0311_datainterchange_buffer2file(int input_encoding, int ou
 }
 
 
-extern char* decode_tap0311_datainterchange_buffer2buffer(int input_encoding, int output_encoding, char *in_buffer, unsigned long long in_buffer_size){
-    size_t size = (size_t)in_buffer_size;
-    
-    DataInterChange_t *decoded_content = decode_datainterchange_buffer(input_encoding, in_buffer, size);
-    
-    char *encoded_content = encode_datainterchange_2buffer(decoded_content,output_encoding);
-    // free(*buffer);
-    free(decoded_content);
-    return encoded_content; // possible memory leak. Return void* instead? Such that the we can create a function that frees memory at pointer. (HANDL)
-}
-
-
-extern char* decode_tap0311_datainterchange_file2buffer(int input_encoding, int output_encoding, char *file_path)
+extern int decode_tap0311_datainterchange_file2buffer(int input_encoding, int output_encoding, char *file_path, char** out_buffer)
 {
     DataInterChange_t *decoded_content = decode_datainterchange_file(input_encoding, file_path);
 
-    char *encoded_content = encode_datainterchange_2buffer(decoded_content,output_encoding);
+    int encoded_bytes = encode_datainterchange_2buffer(decoded_content,output_encoding, out_buffer);
     free(decoded_content);
-    return encoded_content; // possible memory leak. Return void* instead? Such that the we can create a function that frees memory at pointer. (HANDL)
+    return encoded_bytes; // possible memory leak. Return void* instead? Such that the we can create a function that frees memory at pointer. (HANDL)
 }
 
 
-extern char* decode_tap0311_datainterchange_buffer2buffer_new(int input_encoding, int output_encoding, char *in_buffer, unsigned long long in_buffer_size, char** out_buffer){
+extern int decode_tap0311_datainterchange_buffer2buffer(int input_encoding, int output_encoding, char *in_buffer, unsigned long long in_buffer_size, char** out_buffer)
+{
     size_t size = (size_t)in_buffer_size;
     
     DataInterChange_t *decoded_content = decode_datainterchange_buffer(input_encoding, in_buffer, size);
     
-    int encoded_bytes = encode_datainterchange_2buffer_new(decoded_content,output_encoding, out_buffer);
-    // free(*buffer);
+    int encoded_bytes = encode_datainterchange_2buffer(decoded_content,output_encoding, out_buffer);
+    free(decoded_content);
     return encoded_bytes;
 }
 
