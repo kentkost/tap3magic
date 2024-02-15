@@ -2,6 +2,7 @@
 build
 build-debug
 build-release
+perl_test
 
 # Ignore pdus
 src/*/pdu/*
