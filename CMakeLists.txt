@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 
-project("tap3reader"
+project("tap3magic"
     VERSION 0.1.0.0 
-    DESCRIPTION "Library for reading tap3 files" 
+    DESCRIPTION "Libraries for reading (and writing in future) TAP3 files"
     LANGUAGES C
 )
 
