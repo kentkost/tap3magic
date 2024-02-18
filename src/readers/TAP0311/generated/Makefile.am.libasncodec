@@ -1,0 +1,798 @@
+ASN_MODULE_SRCS=	\
+	DataInterChange.c	\
+	TransferBatch.c	\
+	Notification.c	\
+	CallEventDetailList.c	\
+	CallEventDetail.c	\
+	BatchControlInfo.c	\
+	AccountingInfo.c	\
+	NetworkInfo.c	\
+	MessageDescriptionInfoList.c	\
+	MobileOriginatedCall.c	\
+	MobileTerminatedCall.c	\
+	SupplServiceEvent.c	\
+	ServiceCentreUsage.c	\
+	GprsCall.c	\
+	ContentTransaction.c	\
+	LocationService.c	\
+	AuditControlInfo.c	\
+	AccessPointNameNI.c	\
+	AccessPointNameOI.c	\
+	ActualDeliveryTimeStamp.c	\
+	AddressStringDigits.c	\
+	AdvisedCharge.c	\
+	AdvisedChargeCurrency.c	\
+	AdvisedChargeInformation.c	\
+	AgeOfLocation.c	\
+	BasicService.c	\
+	BasicServiceCode.c	\
+	BasicServiceCodeList.c	\
+	BasicServiceUsed.c	\
+	BasicServiceUsedList.c	\
+	BearerServiceCode.c	\
+	CalledNumber.c	\
+	CalledPlace.c	\
+	CalledRegion.c	\
+	CallEventDetailsCount.c	\
+	CallEventStartTimeStamp.c	\
+	CallingNumber.c	\
+	CallOriginator.c	\
+	CallReference.c	\
+	CallTypeGroup.c	\
+	CallTypeLevel1.c	\
+	CallTypeLevel2.c	\
+	CallTypeLevel3.c	\
+	CamelDestinationNumber.c	\
+	CamelInvocationFee.c	\
+	CamelServiceKey.c	\
+	CamelServiceLevel.c	\
+	CamelServiceUsed.c	\
+	CauseForTerm.c	\
+	CellId.c	\
+	Charge.c	\
+	ChargeableSubscriber.c	\
+	ChargeableUnits.c	\
+	ChargeDetail.c	\
+	ChargeDetailList.c	\
+	ChargeDetailTimeStamp.c	\
+	ChargedItem.c	\
+	ChargedPartyEquipment.c	\
+	ChargedPartyHomeIdentification.c	\
+	ChargedPartyHomeIdList.c	\
+	ChargedPartyIdentification.c	\
+	ChargedPartyIdentifier.c	\
+	ChargedPartyIdList.c	\
+	ChargedPartyIdType.c	\
+	ChargedPartyInformation.c	\
+	ChargedPartyLocation.c	\
+	ChargedPartyLocationList.c	\
+	ChargedPartyStatus.c	\
+	ChargedUnits.c	\
+	ChargeInformation.c	\
+	ChargeInformationList.c	\
+	ChargeRefundIndicator.c	\
+	ChargeType.c	\
+	ChargingId.c	\
+	ChargingPoint.c	\
+	ChargingTimeStamp.c	\
+	ClirIndicator.c	\
+	Commission.c	\
+	CompletionTimeStamp.c	\
+	ContentChargingPoint.c	\
+	ContentProvider.c	\
+	ContentProviderIdentifier.c	\
+	ContentProviderIdList.c	\
+	ContentProviderIdType.c	\
+	ContentProviderName.c	\
+	ContentServiceUsed.c	\
+	ContentServiceUsedList.c	\
+	ContentTransactionBasicInfo.c	\
+	ContentTransactionCode.c	\
+	ContentTransactionType.c	\
+	CseInformation.c	\
+	CurrencyConversion.c	\
+	CurrencyConversionList.c	\
+	CustomerIdentifier.c	\
+	CustomerIdType.c	\
+	DataVolume.c	\
+	DataVolumeIncoming.c	\
+	DataVolumeOutgoing.c	\
+	DateTime.c	\
+	DateTimeLong.c	\
+	DefaultCallHandlingIndicator.c	\
+	DepositTimeStamp.c	\
+	Destination.c	\
+	DestinationNetwork.c	\
+	DialledDigits.c	\
+	Discount.c	\
+	DiscountableAmount.c	\
+	DiscountApplied.c	\
+	DiscountCode.c	\
+	DiscountInformation.c	\
+	Discounting.c	\
+	DiscountingList.c	\
+	DiscountRate.c	\
+	DiscountValue.c	\
+	DistanceChargeBandCode.c	\
+	EarliestCallTimeStamp.c	\
+	EquipmentId.c	\
+	EquipmentIdType.c	\
+	Esn.c	\
+	ExchangeRate.c	\
+	ExchangeRateCode.c	\
+	FileAvailableTimeStamp.c	\
+	FileCreationTimeStamp.c	\
+	FileSequenceNumber.c	\
+	FileTypeIndicator.c	\
+	FixedDiscountValue.c	\
+	Fnur.c	\
+	GeographicalLocation.c	\
+	GprsBasicCallInformation.c	\
+	GprsChargeableSubscriber.c	\
+	GprsDestination.c	\
+	GprsLocationInformation.c	\
+	GprsNetworkLocation.c	\
+	GprsServiceUsed.c	\
+	GsmChargeableSubscriber.c	\
+	GuaranteedBitRate.c	\
+	HomeBid.c	\
+	HomeIdentifier.c	\
+	HomeIdType.c	\
+	HomeLocationDescription.c	\
+	HomeLocationInformation.c	\
+	HorizontalAccuracyDelivered.c	\
+	HorizontalAccuracyRequested.c	\
+	HSCSDIndicator.c	\
+	Imei.c	\
+	ImeiOrEsn.c	\
+	Imsi.c	\
+	IMSSignallingContext.c	\
+	InternetServiceProvider.c	\
+	InternetServiceProviderIdList.c	\
+	IspIdentifier.c	\
+	IspIdType.c	\
+	ISPList.c	\
+	NetworkIdType.c	\
+	NetworkIdentifier.c	\
+	Network.c	\
+	NetworkList.c	\
+	LatestCallTimeStamp.c	\
+	LCSQosDelivered.c	\
+	LCSQosRequested.c	\
+	LCSRequestTimestamp.c	\
+	LCSSPIdentification.c	\
+	LCSSPIdentificationList.c	\
+	LCSSPInformation.c	\
+	LCSTransactionStatus.c	\
+	LocalCurrency.c	\
+	LocalTimeStamp.c	\
+	LocationArea.c	\
+	LocationDescription.c	\
+	LocationIdentifier.c	\
+	LocationIdType.c	\
+	LocationInformation.c	\
+	LocationServiceUsage.c	\
+	MaximumBitRate.c	\
+	Mdn.c	\
+	MessageDescription.c	\
+	MessageDescriptionCode.c	\
+	MessageDescriptionInformation.c	\
+	MessageStatus.c	\
+	MessageType.c	\
+	Min.c	\
+	MinChargeableSubscriber.c	\
+	MoBasicCallInformation.c	\
+	Msisdn.c	\
+	MtBasicCallInformation.c	\
+	NetworkAccessIdentifier.c	\
+	NetworkId.c	\
+	NetworkInitPDPContext.c	\
+	NetworkLocation.c	\
+	NonChargedNumber.c	\
+	NumberOfDecimalPlaces.c	\
+	ObjectType.c	\
+	OperatorSpecInfoList.c	\
+	OperatorSpecInformation.c	\
+	OrderPlacedTimeStamp.c	\
+	OriginatingNetwork.c	\
+	PacketDataProtocolAddress.c	\
+	PaidIndicator.c	\
+	PartialTypeIndicator.c	\
+	PaymentMethod.c	\
+	PdpAddress.c	\
+	PDPContextStartTimestamp.c	\
+	PlmnId.c	\
+	PositioningMethod.c	\
+	PriorityCode.c	\
+	RapFileSequenceNumber.c	\
+	RecEntityCode.c	\
+	RecEntityCodeList.c	\
+	RecEntityId.c	\
+	RecEntityInfoList.c	\
+	RecEntityInformation.c	\
+	RecEntityType.c	\
+	Recipient.c	\
+	ReleaseVersionNumber.c	\
+	RequestedDeliveryTimeStamp.c	\
+	ResponseTime.c	\
+	ResponseTimeCategory.c	\
+	ScuBasicInformation.c	\
+	ScuChargeType.c	\
+	ScuTimeStamps.c	\
+	ScuChargeableSubscriber.c	\
+	Sender.c	\
+	ServingBid.c	\
+	ServingLocationDescription.c	\
+	ServingNetwork.c	\
+	ServingPartiesInformation.c	\
+	SimChargeableSubscriber.c	\
+	SimToolkitIndicator.c	\
+	SMSDestinationNumber.c	\
+	SMSOriginator.c	\
+	SpecificationVersionNumber.c	\
+	SsParameters.c	\
+	SupplServiceActionCode.c	\
+	SupplServiceCode.c	\
+	SupplServiceUsed.c	\
+	TapCurrency.c	\
+	TapDecimalPlaces.c	\
+	TaxableAmount.c	\
+	Taxation.c	\
+	TaxationList.c	\
+	TaxCode.c	\
+	TaxIndicator.c	\
+	TaxInformation.c	\
+	TaxInformationList.c	\
+	TaxRate.c	\
+	TaxType.c	\
+	TaxValue.c	\
+	TeleServiceCode.c	\
+	ThirdPartyInformation.c	\
+	ThirdPartyNumber.c	\
+	ThreeGcamelDestination.c	\
+	TotalAdvisedCharge.c	\
+	TotalAdvisedChargeRefund.c	\
+	TotalAdvisedChargeValue.c	\
+	TotalAdvisedChargeValueList.c	\
+	TotalCallEventDuration.c	\
+	TotalCharge.c	\
+	TotalChargeRefund.c	\
+	TotalCommission.c	\
+	TotalCommissionRefund.c	\
+	TotalDataVolume.c	\
+	TotalDiscountRefund.c	\
+	TotalDiscountValue.c	\
+	TotalTaxRefund.c	\
+	TotalTaxValue.c	\
+	TotalTransactionDuration.c	\
+	TrackedCustomerEquipment.c	\
+	TrackedCustomerHomeId.c	\
+	TrackedCustomerHomeIdList.c	\
+	TrackedCustomerIdentification.c	\
+	TrackedCustomerIdList.c	\
+	TrackedCustomerInformation.c	\
+	TrackedCustomerLocation.c	\
+	TrackedCustomerLocList.c	\
+	TrackingCustomerEquipment.c	\
+	TrackingCustomerHomeId.c	\
+	TrackingCustomerHomeIdList.c	\
+	TrackingCustomerIdentification.c	\
+	TrackingCustomerIdList.c	\
+	TrackingCustomerInformation.c	\
+	TrackingCustomerLocation.c	\
+	TrackingCustomerLocList.c	\
+	TrackingFrequency.c	\
+	TrackingPeriod.c	\
+	TransactionAuthCode.c	\
+	TransactionDescriptionSupp.c	\
+	TransactionDetailDescription.c	\
+	TransactionIdentifier.c	\
+	TransactionShortDescription.c	\
+	TransactionStatus.c	\
+	TransferCutOffTimeStamp.c	\
+	TransparencyIndicator.c	\
+	UserProtocolIndicator.c	\
+	UtcTimeOffset.c	\
+	UtcTimeOffsetCode.c	\
+	UtcTimeOffsetInfo.c	\
+	UtcTimeOffsetInfoList.c	\
+	VerticalAccuracyDelivered.c	\
+	VerticalAccuracyRequested.c	\
+	AbsoluteAmount.c	\
+	Bid.c	\
+	Code.c	\
+	AsciiString.c	\
+	BCDString.c	\
+	Currency.c	\
+	HexString.c	\
+	NumberString.c	\
+	PercentageRate.c	\
+	EXTERNAL.c
+
+ASN_MODULE_HDRS=	\
+	DataInterChange.h	\
+	TransferBatch.h	\
+	Notification.h	\
+	CallEventDetailList.h	\
+	CallEventDetail.h	\
+	BatchControlInfo.h	\
+	AccountingInfo.h	\
+	NetworkInfo.h	\
+	MessageDescriptionInfoList.h	\
+	MobileOriginatedCall.h	\
+	MobileTerminatedCall.h	\
+	SupplServiceEvent.h	\
+	ServiceCentreUsage.h	\
+	GprsCall.h	\
+	ContentTransaction.h	\
+	LocationService.h	\
+	AuditControlInfo.h	\
+	AccessPointNameNI.h	\
+	AccessPointNameOI.h	\
+	ActualDeliveryTimeStamp.h	\
+	AddressStringDigits.h	\
+	AdvisedCharge.h	\
+	AdvisedChargeCurrency.h	\
+	AdvisedChargeInformation.h	\
+	AgeOfLocation.h	\
+	BasicService.h	\
+	BasicServiceCode.h	\
+	BasicServiceCodeList.h	\
+	BasicServiceUsed.h	\
+	BasicServiceUsedList.h	\
+	BearerServiceCode.h	\
+	CalledNumber.h	\
+	CalledPlace.h	\
+	CalledRegion.h	\
+	CallEventDetailsCount.h	\
+	CallEventStartTimeStamp.h	\
+	CallingNumber.h	\
+	CallOriginator.h	\
+	CallReference.h	\
+	CallTypeGroup.h	\
+	CallTypeLevel1.h	\
+	CallTypeLevel2.h	\
+	CallTypeLevel3.h	\
+	CamelDestinationNumber.h	\
+	CamelInvocationFee.h	\
+	CamelServiceKey.h	\
+	CamelServiceLevel.h	\
+	CamelServiceUsed.h	\
+	CauseForTerm.h	\
+	CellId.h	\
+	Charge.h	\
+	ChargeableSubscriber.h	\
+	ChargeableUnits.h	\
+	ChargeDetail.h	\
+	ChargeDetailList.h	\
+	ChargeDetailTimeStamp.h	\
+	ChargedItem.h	\
+	ChargedPartyEquipment.h	\
+	ChargedPartyHomeIdentification.h	\
+	ChargedPartyHomeIdList.h	\
+	ChargedPartyIdentification.h	\
+	ChargedPartyIdentifier.h	\
+	ChargedPartyIdList.h	\
+	ChargedPartyIdType.h	\
+	ChargedPartyInformation.h	\
+	ChargedPartyLocation.h	\
+	ChargedPartyLocationList.h	\
+	ChargedPartyStatus.h	\
+	ChargedUnits.h	\
+	ChargeInformation.h	\
+	ChargeInformationList.h	\
+	ChargeRefundIndicator.h	\
+	ChargeType.h	\
+	ChargingId.h	\
+	ChargingPoint.h	\
+	ChargingTimeStamp.h	\
+	ClirIndicator.h	\
+	Commission.h	\
+	CompletionTimeStamp.h	\
+	ContentChargingPoint.h	\
+	ContentProvider.h	\
+	ContentProviderIdentifier.h	\
+	ContentProviderIdList.h	\
+	ContentProviderIdType.h	\
+	ContentProviderName.h	\
+	ContentServiceUsed.h	\
+	ContentServiceUsedList.h	\
+	ContentTransactionBasicInfo.h	\
+	ContentTransactionCode.h	\
+	ContentTransactionType.h	\
+	CseInformation.h	\
+	CurrencyConversion.h	\
+	CurrencyConversionList.h	\
+	CustomerIdentifier.h	\
+	CustomerIdType.h	\
+	DataVolume.h	\
+	DataVolumeIncoming.h	\
+	DataVolumeOutgoing.h	\
+	DateTime.h	\
+	DateTimeLong.h	\
+	DefaultCallHandlingIndicator.h	\
+	DepositTimeStamp.h	\
+	Destination.h	\
+	DestinationNetwork.h	\
+	DialledDigits.h	\
+	Discount.h	\
+	DiscountableAmount.h	\
+	DiscountApplied.h	\
+	DiscountCode.h	\
+	DiscountInformation.h	\
+	Discounting.h	\
+	DiscountingList.h	\
+	DiscountRate.h	\
+	DiscountValue.h	\
+	DistanceChargeBandCode.h	\
+	EarliestCallTimeStamp.h	\
+	EquipmentId.h	\
+	EquipmentIdType.h	\
+	Esn.h	\
+	ExchangeRate.h	\
+	ExchangeRateCode.h	\
+	FileAvailableTimeStamp.h	\
+	FileCreationTimeStamp.h	\
+	FileSequenceNumber.h	\
+	FileTypeIndicator.h	\
+	FixedDiscountValue.h	\
+	Fnur.h	\
+	GeographicalLocation.h	\
+	GprsBasicCallInformation.h	\
+	GprsChargeableSubscriber.h	\
+	GprsDestination.h	\
+	GprsLocationInformation.h	\
+	GprsNetworkLocation.h	\
+	GprsServiceUsed.h	\
+	GsmChargeableSubscriber.h	\
+	GuaranteedBitRate.h	\
+	HomeBid.h	\
+	HomeIdentifier.h	\
+	HomeIdType.h	\
+	HomeLocationDescription.h	\
+	HomeLocationInformation.h	\
+	HorizontalAccuracyDelivered.h	\
+	HorizontalAccuracyRequested.h	\
+	HSCSDIndicator.h	\
+	Imei.h	\
+	ImeiOrEsn.h	\
+	Imsi.h	\
+	IMSSignallingContext.h	\
+	InternetServiceProvider.h	\
+	InternetServiceProviderIdList.h	\
+	IspIdentifier.h	\
+	IspIdType.h	\
+	ISPList.h	\
+	NetworkIdType.h	\
+	NetworkIdentifier.h	\
+	Network.h	\
+	NetworkList.h	\
+	LatestCallTimeStamp.h	\
+	LCSQosDelivered.h	\
+	LCSQosRequested.h	\
+	LCSRequestTimestamp.h	\
+	LCSSPIdentification.h	\
+	LCSSPIdentificationList.h	\
+	LCSSPInformation.h	\
+	LCSTransactionStatus.h	\
+	LocalCurrency.h	\
+	LocalTimeStamp.h	\
+	LocationArea.h	\
+	LocationDescription.h	\
+	LocationIdentifier.h	\
+	LocationIdType.h	\
+	LocationInformation.h	\
+	LocationServiceUsage.h	\
+	MaximumBitRate.h	\
+	Mdn.h	\
+	MessageDescription.h	\
+	MessageDescriptionCode.h	\
+	MessageDescriptionInformation.h	\
+	MessageStatus.h	\
+	MessageType.h	\
+	Min.h	\
+	MinChargeableSubscriber.h	\
+	MoBasicCallInformation.h	\
+	Msisdn.h	\
+	MtBasicCallInformation.h	\
+	NetworkAccessIdentifier.h	\
+	NetworkId.h	\
+	NetworkInitPDPContext.h	\
+	NetworkLocation.h	\
+	NonChargedNumber.h	\
+	NumberOfDecimalPlaces.h	\
+	ObjectType.h	\
+	OperatorSpecInfoList.h	\
+	OperatorSpecInformation.h	\
+	OrderPlacedTimeStamp.h	\
+	OriginatingNetwork.h	\
+	PacketDataProtocolAddress.h	\
+	PaidIndicator.h	\
+	PartialTypeIndicator.h	\
+	PaymentMethod.h	\
+	PdpAddress.h	\
+	PDPContextStartTimestamp.h	\
+	PlmnId.h	\
+	PositioningMethod.h	\
+	PriorityCode.h	\
+	RapFileSequenceNumber.h	\
+	RecEntityCode.h	\
+	RecEntityCodeList.h	\
+	RecEntityId.h	\
+	RecEntityInfoList.h	\
+	RecEntityInformation.h	\
+	RecEntityType.h	\
+	Recipient.h	\
+	ReleaseVersionNumber.h	\
+	RequestedDeliveryTimeStamp.h	\
+	ResponseTime.h	\
+	ResponseTimeCategory.h	\
+	ScuBasicInformation.h	\
+	ScuChargeType.h	\
+	ScuTimeStamps.h	\
+	ScuChargeableSubscriber.h	\
+	Sender.h	\
+	ServingBid.h	\
+	ServingLocationDescription.h	\
+	ServingNetwork.h	\
+	ServingPartiesInformation.h	\
+	SimChargeableSubscriber.h	\
+	SimToolkitIndicator.h	\
+	SMSDestinationNumber.h	\
+	SMSOriginator.h	\
+	SpecificationVersionNumber.h	\
+	SsParameters.h	\
+	SupplServiceActionCode.h	\
+	SupplServiceCode.h	\
+	SupplServiceUsed.h	\
+	TapCurrency.h	\
+	TapDecimalPlaces.h	\
+	TaxableAmount.h	\
+	Taxation.h	\
+	TaxationList.h	\
+	TaxCode.h	\
+	TaxIndicator.h	\
+	TaxInformation.h	\
+	TaxInformationList.h	\
+	TaxRate.h	\
+	TaxType.h	\
+	TaxValue.h	\
+	TeleServiceCode.h	\
+	ThirdPartyInformation.h	\
+	ThirdPartyNumber.h	\
+	ThreeGcamelDestination.h	\
+	TotalAdvisedCharge.h	\
+	TotalAdvisedChargeRefund.h	\
+	TotalAdvisedChargeValue.h	\
+	TotalAdvisedChargeValueList.h	\
+	TotalCallEventDuration.h	\
+	TotalCharge.h	\
+	TotalChargeRefund.h	\
+	TotalCommission.h	\
+	TotalCommissionRefund.h	\
+	TotalDataVolume.h	\
+	TotalDiscountRefund.h	\
+	TotalDiscountValue.h	\
+	TotalTaxRefund.h	\
+	TotalTaxValue.h	\
+	TotalTransactionDuration.h	\
+	TrackedCustomerEquipment.h	\
+	TrackedCustomerHomeId.h	\
+	TrackedCustomerHomeIdList.h	\
+	TrackedCustomerIdentification.h	\
+	TrackedCustomerIdList.h	\
+	TrackedCustomerInformation.h	\
+	TrackedCustomerLocation.h	\
+	TrackedCustomerLocList.h	\
+	TrackingCustomerEquipment.h	\
+	TrackingCustomerHomeId.h	\
+	TrackingCustomerHomeIdList.h	\
+	TrackingCustomerIdentification.h	\
+	TrackingCustomerIdList.h	\
+	TrackingCustomerInformation.h	\
+	TrackingCustomerLocation.h	\
+	TrackingCustomerLocList.h	\
+	TrackingFrequency.h	\
+	TrackingPeriod.h	\
+	TransactionAuthCode.h	\
+	TransactionDescriptionSupp.h	\
+	TransactionDetailDescription.h	\
+	TransactionIdentifier.h	\
+	TransactionShortDescription.h	\
+	TransactionStatus.h	\
+	TransferCutOffTimeStamp.h	\
+	TransparencyIndicator.h	\
+	UserProtocolIndicator.h	\
+	UtcTimeOffset.h	\
+	UtcTimeOffsetCode.h	\
+	UtcTimeOffsetInfo.h	\
+	UtcTimeOffsetInfoList.h	\
+	VerticalAccuracyDelivered.h	\
+	VerticalAccuracyRequested.h	\
+	AbsoluteAmount.h	\
+	Bid.h	\
+	Code.h	\
+	AsciiString.h	\
+	BCDString.h	\
+	Currency.h	\
+	HexString.h	\
+	NumberString.h	\
+	PercentageRate.h	\
+	EXTERNAL.h
+
+ASN_MODULE_HDRS+=ANY.h
+ASN_MODULE_SRCS+=ANY.c
+ASN_MODULE_HDRS+=OCTET_STRING.h
+ASN_MODULE_HDRS+=OPEN_TYPE.h
+ASN_MODULE_SRCS+=OPEN_TYPE.c
+ASN_MODULE_HDRS+=constr_CHOICE.h
+ASN_MODULE_HDRS+=GraphicString.h
+ASN_MODULE_SRCS+=GraphicString.c
+ASN_MODULE_HDRS+=INTEGER.h
+ASN_MODULE_SRCS+=INTEGER.c
+ASN_MODULE_HDRS+=NativeInteger.h
+ASN_MODULE_SRCS+=NativeInteger.c
+ASN_MODULE_HDRS+=OBJECT_IDENTIFIER.h
+ASN_MODULE_SRCS+=OBJECT_IDENTIFIER.c
+ASN_MODULE_HDRS+=asn_codecs_prim.h
+ASN_MODULE_HDRS+=ObjectDescriptor.h
+ASN_MODULE_SRCS+=ObjectDescriptor.c
+ASN_MODULE_HDRS+=asn_SEQUENCE_OF.h
+ASN_MODULE_SRCS+=asn_SEQUENCE_OF.c
+ASN_MODULE_HDRS+=asn_SET_OF.h
+ASN_MODULE_SRCS+=asn_SET_OF.c
+ASN_MODULE_SRCS+=constr_CHOICE.c
+ASN_MODULE_HDRS+=constr_SEQUENCE.h
+ASN_MODULE_SRCS+=constr_SEQUENCE.c
+ASN_MODULE_HDRS+=constr_SEQUENCE_OF.h
+ASN_MODULE_SRCS+=constr_SEQUENCE_OF.c
+ASN_MODULE_HDRS+=constr_SET_OF.h
+ASN_MODULE_SRCS+=constr_SET_OF.c
+ASN_MODULE_HDRS+=asn_application.h
+ASN_MODULE_SRCS+=asn_application.c
+ASN_MODULE_HDRS+=asn_ioc.h
+ASN_MODULE_HDRS+=asn_system.h
+ASN_MODULE_HDRS+=asn_codecs.h
+ASN_MODULE_HDRS+=asn_internal.h
+ASN_MODULE_SRCS+=asn_internal.c
+ASN_MODULE_HDRS+=asn_bit_data.h
+ASN_MODULE_SRCS+=asn_bit_data.c
+ASN_MODULE_SRCS+=OCTET_STRING.c
+ASN_MODULE_HDRS+=BIT_STRING.h
+ASN_MODULE_SRCS+=BIT_STRING.c
+ASN_MODULE_SRCS+=asn_codecs_prim.c
+ASN_MODULE_HDRS+=ber_tlv_length.h
+ASN_MODULE_SRCS+=ber_tlv_length.c
+ASN_MODULE_HDRS+=ber_tlv_tag.h
+ASN_MODULE_SRCS+=ber_tlv_tag.c
+ASN_MODULE_HDRS+=constr_TYPE.h
+ASN_MODULE_SRCS+=constr_TYPE.c
+ASN_MODULE_HDRS+=constraints.h
+ASN_MODULE_SRCS+=constraints.c
+ASN_MODULE_HDRS+=ber_decoder.h
+ASN_MODULE_HDRS+=der_encoder.h
+ASN_MODULE_SRCS+=ber_decoder.c
+ASN_MODULE_SRCS+=der_encoder.c
+ASN_MODULE_SRCS+=ANY_ber.c
+ASN_MODULE_SRCS+=INTEGER_ber.c
+ASN_MODULE_SRCS+=NativeInteger_ber.c
+ASN_MODULE_SRCS+=OCTET_STRING_ber.c
+ASN_MODULE_SRCS+=OPEN_TYPE_ber.c
+ASN_MODULE_SRCS+=asn_codecs_prim_ber.c
+ASN_MODULE_SRCS+=constr_CHOICE_ber.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_OF_ber.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_ber.c
+ASN_MODULE_SRCS+=constr_SET_OF_ber.c
+ASN_MODULE_HDRS+=xer_support.h
+ASN_MODULE_HDRS+=xer_decoder.h
+ASN_MODULE_HDRS+=xer_encoder.h
+ASN_MODULE_SRCS+=xer_support.c
+ASN_MODULE_SRCS+=xer_decoder.c
+ASN_MODULE_SRCS+=xer_encoder.c
+ASN_MODULE_SRCS+=ANY_xer.c
+ASN_MODULE_SRCS+=BIT_STRING_xer.c
+ASN_MODULE_SRCS+=INTEGER_xer.c
+ASN_MODULE_SRCS+=NativeInteger_xer.c
+ASN_MODULE_SRCS+=OBJECT_IDENTIFIER_xer.c
+ASN_MODULE_SRCS+=OCTET_STRING_xer.c
+ASN_MODULE_SRCS+=OPEN_TYPE_xer.c
+ASN_MODULE_SRCS+=asn_codecs_prim_xer.c
+ASN_MODULE_SRCS+=constr_CHOICE_xer.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_OF_xer.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_xer.c
+ASN_MODULE_SRCS+=constr_SET_OF_xer.c
+ASN_MODULE_HDRS+=oer_decoder.h
+ASN_MODULE_HDRS+=oer_encoder.h
+ASN_MODULE_HDRS+=oer_support.h
+ASN_MODULE_SRCS+=oer_decoder.c
+ASN_MODULE_SRCS+=oer_encoder.c
+ASN_MODULE_SRCS+=oer_support.c
+ASN_MODULE_SRCS+=OPEN_TYPE_oer.c
+ASN_MODULE_SRCS+=INTEGER_oer.c
+ASN_MODULE_SRCS+=BIT_STRING_oer.c
+ASN_MODULE_SRCS+=OCTET_STRING_oer.c
+ASN_MODULE_SRCS+=NativeInteger_oer.c
+ASN_MODULE_SRCS+=constr_CHOICE_oer.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_oer.c
+ASN_MODULE_SRCS+=constr_SET_OF_oer.c
+ASN_MODULE_HDRS+=per_decoder.h
+ASN_MODULE_HDRS+=per_encoder.h
+ASN_MODULE_HDRS+=per_support.h
+ASN_MODULE_HDRS+=per_opentype.h
+ASN_MODULE_SRCS+=per_decoder.c
+ASN_MODULE_SRCS+=per_encoder.c
+ASN_MODULE_SRCS+=per_support.c
+ASN_MODULE_SRCS+=per_opentype.c
+ASN_MODULE_HDRS+=uper_decoder.h
+ASN_MODULE_HDRS+=uper_encoder.h
+ASN_MODULE_HDRS+=uper_support.h
+ASN_MODULE_HDRS+=uper_opentype.h
+ASN_MODULE_SRCS+=uper_decoder.c
+ASN_MODULE_SRCS+=uper_encoder.c
+ASN_MODULE_SRCS+=uper_support.c
+ASN_MODULE_SRCS+=uper_opentype.c
+ASN_MODULE_SRCS+=ANY_uper.c
+ASN_MODULE_SRCS+=BIT_STRING_uper.c
+ASN_MODULE_SRCS+=INTEGER_uper.c
+ASN_MODULE_SRCS+=NativeInteger_uper.c
+ASN_MODULE_SRCS+=OCTET_STRING_uper.c
+ASN_MODULE_SRCS+=OPEN_TYPE_uper.c
+ASN_MODULE_SRCS+=constr_CHOICE_uper.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_OF_uper.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_uper.c
+ASN_MODULE_SRCS+=constr_SET_OF_uper.c
+ASN_MODULE_HDRS+=aper_decoder.h
+ASN_MODULE_HDRS+=aper_encoder.h
+ASN_MODULE_HDRS+=aper_support.h
+ASN_MODULE_HDRS+=aper_opentype.h
+ASN_MODULE_SRCS+=aper_decoder.c
+ASN_MODULE_SRCS+=aper_encoder.c
+ASN_MODULE_SRCS+=aper_support.c
+ASN_MODULE_SRCS+=aper_opentype.c
+ASN_MODULE_SRCS+=ANY_aper.c
+ASN_MODULE_SRCS+=INTEGER_aper.c
+ASN_MODULE_SRCS+=NativeInteger_aper.c
+ASN_MODULE_SRCS+=OCTET_STRING_aper.c
+ASN_MODULE_SRCS+=OPEN_TYPE_aper.c
+ASN_MODULE_SRCS+=constr_CHOICE_aper.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_OF_aper.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_aper.c
+ASN_MODULE_SRCS+=constr_SET_OF_aper.c
+ASN_MODULE_SRCS+=BIT_STRING_print.c
+ASN_MODULE_SRCS+=INTEGER_print.c
+ASN_MODULE_SRCS+=NativeInteger_print.c
+ASN_MODULE_SRCS+=OBJECT_IDENTIFIER_print.c
+ASN_MODULE_SRCS+=OCTET_STRING_print.c
+ASN_MODULE_SRCS+=constr_CHOICE_print.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_print.c
+ASN_MODULE_SRCS+=constr_SET_OF_print.c
+ASN_MODULE_HDRS+=asn_random_fill.h
+ASN_MODULE_SRCS+=asn_random_fill.c
+ASN_MODULE_SRCS+=BIT_STRING_rfill.c
+ASN_MODULE_SRCS+=INTEGER_rfill.c
+ASN_MODULE_SRCS+=NativeInteger_rfill.c
+ASN_MODULE_SRCS+=OBJECT_IDENTIFIER_rfill.c
+ASN_MODULE_SRCS+=OCTET_STRING_rfill.c
+ASN_MODULE_SRCS+=constr_CHOICE_rfill.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_rfill.c
+ASN_MODULE_SRCS+=constr_SET_OF_rfill.c
+ASN_MODULE_HDRS+=jer_encoder.h
+ASN_MODULE_SRCS+=jer_encoder.c
+ASN_MODULE_SRCS+=ANY_jer.c
+ASN_MODULE_SRCS+=BIT_STRING_jer.c
+ASN_MODULE_SRCS+=INTEGER_jer.c
+ASN_MODULE_SRCS+=NativeInteger_jer.c
+ASN_MODULE_SRCS+=OBJECT_IDENTIFIER_jer.c
+ASN_MODULE_SRCS+=OCTET_STRING_jer.c
+ASN_MODULE_SRCS+=constr_CHOICE_jer.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_OF_jer.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_jer.c
+ASN_MODULE_SRCS+=constr_SET_OF_jer.c
+
+ASN_MODULE_CFLAGS=
+
+lib_LTLIBRARIES+=libasncodec.la
+libasncodec_la_SOURCES=$(ASN_MODULE_SRCS) $(ASN_MODULE_HDRS)
+libasncodec_la_CPPFLAGS=-I$(top_srcdir)/
+libasncodec_la_CFLAGS=$(ASN_MODULE_CFLAGS)
+libasncodec_la_LDFLAGS=-lm
