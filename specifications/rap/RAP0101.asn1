@@ -57,7 +57,7 @@ BEGIN
 
 RapDataInterChange ::= CHOICE
 {
-returnBatch		ReturnBatch,
+	returnBatch		ReturnBatch,
 	acknowledgement	Acknowledgement
 }
 

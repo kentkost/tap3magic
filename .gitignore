@@ -4,12 +4,4 @@ build-debug
 build-release
 perl_test
 
-# Ignore pdus
-src/*/pdu/*
-!src/*/pdu/*.cmake
-
-# Ignore tap3 pdus
-src/readers/TAP*/*
-!src/readers/TAP0311/_sources.cmake
-!src/readers/TAP0311/xer_encoder.h
-!src/readers/TAP0311/xer_encoder.c
+tools/__pycache__/

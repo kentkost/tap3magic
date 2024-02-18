@@ -21,6 +21,7 @@
         "asn_system.h": "c",
         "asn_codecs.h": "c",
         "asn_config.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "stdio.h": "c"
     }
 }

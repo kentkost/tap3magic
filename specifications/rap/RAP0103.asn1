@@ -1,20 +1,20 @@
 -- http://www.tap3edit.com
 --
--- Copyright (c) 2000 GSM MoU Association. Restricted - Con­
+-- Copyright (c) 2000 GSM MoU Association. Restricted - Conï¿½
 -- fidential Information.  Access to and distribution of this
 -- document is restricted to the persons listed under the
 -- heading Security Classification Category*. This document
--- is confidential to the Association and is subject to copy­
+-- is confidential to the Association and is subject to copyï¿½
 -- right protection.  This document is to be used only for
--- the purposes for which it has been supplied and informa­
+-- the purposes for which it has been supplied and informaï¿½
 -- tion contained in it must not be disclosed or in any other
 -- way made available, in whole or in part, to persons other
 -- than those listed under Security Classification Category*
 -- without the prior written approval of the Association. The
--- GSM MoU Association (âAssociationâ) makes no representa­
+-- GSM MoU Association (ï¿½Associationï¿½) makes no representaï¿½
 -- tion, warranty or undertaking (express or implied) with
 -- respect to and does not accept any responsibility for, and
--- hereby disclaims liability for the accuracy or complete­
+-- hereby disclaims liability for the accuracy or completeï¿½
 -- ness or timeliness of the information contained in this
 -- document. The information contained in this document may
 -- be subject to change without prior notice.
@@ -37,7 +37,7 @@ BEGIN
 --       valid TAP release this specification does not indicate
 --       explicitly the TAP release to be included.
 --
---       Please replace XX in ‘FROM TAP-03XX’ with the appropriate 
+--       Please replace XX in ï¿½FROM TAP-03XXï¿½ with the appropriate 
 --       TAP release version: e.g. 02, 04, 10, 11, ...
 --       making all TAP fields OPTIONAL
 --
@@ -59,7 +59,7 @@ FROM TAP-03XX;
 
 RapDataInterChange ::= CHOICE
 {
-returnBatch		ReturnBatch,
+  returnBatch		ReturnBatch,
 	acknowledgement	Acknowledgement
 }
 

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.26)
 
 project("tap3magic"
     VERSION 0.1.0.0 
@@ -33,6 +33,7 @@ if(CMAKE_SYSTEM_NAME MATCHES "Windows")
     set(CMAKE_EXTRA_SHARED_LIBRARY_SUFFIXES ".dll")
 endif()
 
+message(${CMAKE_BINARY_DIR})
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 add_subdirectory("src")
